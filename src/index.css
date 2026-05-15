@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Lato', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-rose-50 min-h-screen;
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: 'Dancing Script', cursive;
+  }
+  .font-serif-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Petals animation */
+.petal {
+  position: absolute;
+  border-radius: 50% 0 50% 0;
+  animation: petalFall linear infinite;
+  pointer-events: none;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% { opacity: 0.8; }
+  95% { opacity: 0.8; }
+  100% {
+    transform: translateY(100vh) translateX(60px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Stars twinkle */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(0.7); }
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fdf2f8; }
+::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 3px; }
+
+/* Textarea styling */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Input focus ring */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.2);
+}

@@ -1,0 +1,121 @@
+import { useEffect, useRef } from 'react'
+
+export default function CardSunset({ data, fullscreen = false }) {
+  const { senderName, recipientName, message, signature, accentColor } = data
+  const starsRef = useRef(null)
+
+  useEffect(() => {
+    if (!fullscreen || !starsRef.current) return
+    const container = starsRef.current
+    const stars = []
+
+    for (let i = 0; i < 20; i++) {
+      const el = document.createElement('div')
+      el.className = 'star'
+      const size = Math.random() * 4 + 2
+      el.style.cssText = `
+        width:${size}px; height:${size}px;
+        background: white;
+        top:${Math.random() * 40}%;
+        left:${Math.random() * 100}%;
+        animation-duration:${Math.random() * 2 + 1.5}s;
+        animation-delay:${Math.random() * 3}s;
+      `
+      container.appendChild(el)
+      stars.push(el)
+    }
+    return () => stars.forEach(s => s.remove())
+  }, [fullscreen])
+
+  const msgSize = fullscreen ? 'text-xl' : 'text-sm'
+  const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
+  const pad = fullscreen ? 'p-12' : 'p-6'
+  const smallText = fullscreen ? 'text-base' : 'text-xs'
+
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      style={{
+        background: 'linear-gradient(180deg, #1a1035 0%, #2d1b69 20%, #7c3aed 45%, #db2777 65%, #f97316 80%, #fbbf24 100%)',
+        minHeight: fullscreen ? '100vh' : '280px',
+        fontFamily: '"Playfair Display", Georgia, serif',
+      }}
+    >
+      {fullscreen && <div ref={starsRef} className="absolute inset-0 pointer-events-none" />}
+
+      {/* Moon */}
+      <div
+        className="absolute top-8 right-12 rounded-full opacity-90"
+        style={{
+          width: fullscreen ? 70 : 35,
+          height: fullscreen ? 70 : 35,
+          background: 'radial-gradient(circle at 35% 35%, #fef3c7, #fbbf24)',
+          boxShadow: '0 0 30px rgba(251,191,36,0.6)',
+        }}
+      />
+
+      {/* Sun glow at bottom */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full opacity-40"
+        style={{
+          width: fullscreen ? 400 : 200,
+          height: fullscreen ? 200 : 100,
+          background: 'radial-gradient(ellipse, #fbbf24 0%, transparent 70%)',
+        }}
+      />
+
+      {/* Silhouette hills */}
+      <div
+        className="absolute bottom-0 left-0 right-0 opacity-60"
+        style={{ height: fullscreen ? 100 : 50 }}
+      >
+        <svg viewBox="0 0 400 100" preserveAspectRatio="none" className="w-full h-full">
+          <path d="M0,100 Q50,30 100,60 Q150,0 200,50 Q250,10 300,55 Q350,20 400,60 L400,100 Z" fill="#1a1035" />
+        </svg>
+      </div>
+
+      {/* Horizontal line decoration */}
+      <div className="absolute top-1/3 left-0 right-0 h-px opacity-20" style={{ background: 'linear-gradient(to right, transparent, white, transparent)' }} />
+
+      <div className="relative z-10 space-y-4 max-w-lg">
+        <div className="flex justify-center gap-2 mb-2">
+          {['✦', '✧', '✦'].map((s, i) => (
+            <span key={i} className={`${smallText} text-yellow-300 opacity-80`}>{s}</span>
+          ))}
+        </div>
+
+        <p className={`${smallText} uppercase tracking-widest text-amber-200 opacity-80`}>
+          Fête des Mères 2026
+        </p>
+
+        <h1 className={`${titleSize} italic font-bold leading-tight text-white`}>
+          {recipientName || 'Maman'},<br />mon étoile
+        </h1>
+
+        <div className="py-1">
+          <div className="flex items-center gap-2 justify-center">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-300 opacity-60" />
+            <span className="text-amber-300 text-lg">★</span>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-300 opacity-60" />
+          </div>
+        </div>
+
+        <p
+          className={`${msgSize} leading-relaxed text-rose-100`}
+          style={{ whiteSpace: 'pre-wrap' }}
+        >
+          {message || 'Je t\'aime de tout mon cœur.'}
+        </p>
+
+        <div className="pt-2">
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script text-amber-300`}>
+            {signature || 'Avec tout mon amour'}
+          </p>
+          {senderName && (
+            <p className={`${smallText} text-rose-200 mt-1`}>— {senderName}</p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
