@@ -7,7 +7,7 @@ export default function CardSunset({ data, fullscreen = false }) {
   const starsRef = useRef(null)
 
   useEffect(() => {
-    if (!fullscreen || !starsRef.current) return
+    if (!starsRef.current) return
     const container = starsRef.current
     const stars = []
 
@@ -43,7 +43,7 @@ export default function CardSunset({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      {fullscreen && <div ref={starsRef} className="absolute inset-0 pointer-events-none" />}
+      <div ref={starsRef} className="absolute inset-0 pointer-events-none" />
 
       {/* Moon */}
       <div

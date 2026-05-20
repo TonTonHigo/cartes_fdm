@@ -32,6 +32,48 @@ const TEMPLATES = [
     preview: 'linear-gradient(145deg, #1e0a3c, #2d1557)',
     emoji: '👑',
   },
+  {
+    id: 'creole',
+    name: 'Maman Créole',
+    desc: 'Tradition & Chaleur',
+    preview: 'linear-gradient(145deg, #6B1A0A, #D4652A, #E8A020)',
+    emoji: '🌺',
+  },
+  {
+    id: 'lontan',
+    name: 'Maman Lontan',
+    desc: 'Nostalgie & Douceur',
+    preview: 'linear-gradient(160deg, #2C1A0E, #8B6340, #E8D5B0)',
+    emoji: '🌿',
+  },
+  {
+    id: 'nature',
+    name: 'Maman Nature',
+    desc: 'Jungle & Cascade',
+    preview: 'linear-gradient(160deg, #071E0A, #1A7A3A, #0C5E6E)',
+    emoji: '🌊',
+  },
+  {
+    id: 'soleil',
+    name: 'Maman Soleil',
+    desc: 'Plage & Lagon',
+    preview: 'linear-gradient(180deg, #0C4A6E, #38BDF8, #F59E0B)',
+    emoji: '☀️',
+  },
+  {
+    id: 'hauts',
+    name: 'Maman des Hauts',
+    desc: 'Montagne & Brume',
+    preview: 'linear-gradient(180deg, #0F1F14, #2D5A35, #B8CCB8)',
+    emoji: '🏔️',
+  },
+  {
+    id: 'gourmande',
+    name: 'Maman Gourmande',
+    desc: 'Épices & Partage',
+    preview: 'linear-gradient(145deg, #2C0F00, #C4501E, #F59E0B)',
+    emoji: '🍲',
+  },
 ]
 
 const DEFAULT_DATA = {
@@ -155,14 +197,24 @@ export default function CardEditor() {
 
             {/* Navigation buttons */}
             <div className="flex justify-between mt-6 pt-4 border-t border-rose-50">
-              <button
-                onClick={() => setStep(s => Math.max(s - 1, 0))}
-                disabled={step === 0}
-                className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm
-                  hover:bg-rose-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-              >
-                ← Retour
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setStep(s => Math.max(s - 1, 0))}
+                  disabled={step === 0}
+                  className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm
+                    hover:bg-rose-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                >
+                  ← Retour
+                </button>
+                {step === 2 && (
+                  <button
+                    onClick={() => { setStep(0); setData(DEFAULT_DATA); setCardUrl(null); setEmail('') }}
+                    className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm hover:bg-rose-50 transition-all"
+                  >
+                    🎨 Nouvelle carte
+                  </button>
+                )}
+              </div>
               {step < 2 ? (
                 <button
                   onClick={handleNext}

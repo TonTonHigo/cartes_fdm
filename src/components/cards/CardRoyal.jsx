@@ -7,7 +7,7 @@ export default function CardRoyal({ data, fullscreen = false }) {
   const particlesRef = useRef(null)
 
   useEffect(() => {
-    if (!fullscreen || !particlesRef.current) return
+    if (!particlesRef.current) return
     const container = particlesRef.current
     const particles = []
 
@@ -54,7 +54,7 @@ export default function CardRoyal({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      {fullscreen && <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />}
+      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
 
       {/* Gold border */}
       <div

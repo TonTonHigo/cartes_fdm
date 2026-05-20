@@ -20,7 +20,7 @@ export default function CardFloral({ data, fullscreen = false }) {
   const petalsRef = useRef(null)
 
   useEffect(() => {
-    if (!fullscreen || !petalsRef.current) return
+    if (!petalsRef.current) return
     const container = petalsRef.current
     const colors = [accentColor, '#fda4af', '#f9a8d4', '#fbcfe8', '#fce7f3']
     const petals = []
@@ -41,7 +41,7 @@ export default function CardFloral({ data, fullscreen = false }) {
       petals.push(el)
     }
     return () => petals.forEach(p => p.remove())
-  }, [fullscreen, accentColor])
+  }, [accentColor])
 
   const safeAccent = ensureContrast(accentColor, '#fce7f3')
   const scale = fullscreen ? 'text-base' : 'text-xs'
@@ -58,7 +58,7 @@ export default function CardFloral({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      {fullscreen && <div ref={petalsRef} className="absolute inset-0 pointer-events-none overflow-hidden" />}
+      <div ref={petalsRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
 
       {/* Corner flowers */}
       {['top-2 left-2 rotate-0', 'top-2 right-2 rotate-90', 'bottom-2 left-2 -rotate-90', 'bottom-2 right-2 rotate-180'].map((pos, i) => (

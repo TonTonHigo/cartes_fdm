@@ -1,8 +1,35 @@
+import { useEffect, useRef } from 'react'
 import { ensureContrast } from '../../utils/colorUtils'
 
 export default function CardAquarelle({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccentOnWhite = ensureContrast(accentColor, '#ffffff')
+  const bubblesRef = useRef(null)
+
+  useEffect(() => {
+    if (!bubblesRef.current) return
+    const container = bubblesRef.current
+    const colors = ['#fce7f3', '#ede9fe', '#d1fae5', '#fef3c7', '#fbcfe8', '#ddd6fe']
+    const bubbles = []
+    for (let i = 0; i < 22; i++) {
+      const el = document.createElement('div')
+      el.className = 'bubble'
+      const size = Math.random() * 28 + 10
+      el.style.cssText = `
+        width:${size}px; height:${size}px;
+        background:${colors[Math.floor(Math.random() * colors.length)]};
+        left:${Math.random() * 100}%;
+        bottom:${Math.random() * 20}%;
+        animation-duration:${Math.random() * 6 + 5}s;
+        animation-delay:${Math.random() * 8}s;
+        opacity:0;
+        filter:blur(1px);
+      `
+      container.appendChild(el)
+      bubbles.push(el)
+    }
+    return () => bubbles.forEach(b => b.remove())
+  }, [fullscreen])
 
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -26,55 +53,38 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
+      <div ref={bubblesRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+
       {/* Watercolor blobs */}
       {blobs.map((blob, i) => (
-        <div
-          key={i}
-          className="absolute pointer-events-none"
-          style={{
-            top: blob.top,
-            left: blob.left,
-            right: blob.right,
-            bottom: blob.bottom,
-            width: fullscreen ? blob.w * 1.5 : blob.w,
-            height: fullscreen ? blob.h * 1.5 : blob.h,
-            background: blob.color,
-            opacity: blob.opacity,
-            borderRadius: blob.r,
-            filter: 'blur(2px)',
-          }}
-        />
+        <div key={i} className="absolute pointer-events-none" style={{
+          top: blob.top, left: blob.left, right: blob.right, bottom: blob.bottom,
+          width: fullscreen ? blob.w * 1.5 : blob.w,
+          height: fullscreen ? blob.h * 1.5 : blob.h,
+          background: blob.color, opacity: blob.opacity,
+          borderRadius: blob.r, filter: 'blur(2px)',
+        }} />
       ))}
 
       {/* Dots pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         {Array.from({ length: fullscreen ? 80 : 40 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: 4,
-              height: 4,
-              background: accentColor,
-              top: `${Math.sin(i * 2.1) * 45 + 50}%`,
-              left: `${(i / (fullscreen ? 80 : 40)) * 100}%`,
-            }}
-          />
+          <div key={i} className="absolute rounded-full" style={{
+            width: 4, height: 4, background: accentColor,
+            top: `${Math.sin(i * 2.1) * 45 + 50}%`,
+            left: `${(i / (fullscreen ? 80 : 40)) * 100}%`,
+          }} />
         ))}
       </div>
 
       {/* Border */}
-      <div
-        className="absolute inset-4 rounded-xl border pointer-events-none"
-        style={{ borderColor: `${accentColor}30`, borderStyle: 'dashed' }}
-      />
+      <div className="absolute inset-4 rounded-xl border pointer-events-none"
+        style={{ borderColor: `${accentColor}30`, borderStyle: 'dashed' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <div className="flex justify-center">
-          <div
-            className="px-4 py-1 rounded-full text-white"
-            style={{ background: `linear-gradient(135deg, ${safeAccentOnWhite}, #7e22ce)`, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}
-          >
+          <div className="px-4 py-1 rounded-full text-white"
+            style={{ background: `linear-gradient(135deg, ${safeAccentOnWhite}, #7e22ce)`, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}>
             Fête des Mères 2026
           </div>
         </div>
@@ -89,10 +99,8 @@ export default function CardAquarelle({ data, fullscreen = false }) {
           ))}
         </div>
 
-        <p
-          className={`${msgSize} leading-relaxed`}
-          style={{ color: '#374151', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}
-        >
+        <p className={`${msgSize} leading-relaxed`}
+          style={{ color: '#374151', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
           {message || 'Je t\'aime de tout mon cœur.'}
         </p>
 

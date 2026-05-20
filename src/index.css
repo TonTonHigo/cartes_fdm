@@ -55,6 +55,118 @@
   50% { opacity: 0.2; transform: scale(0.7); }
 }
 
+/* Bubble float up animation */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatUp ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.75; }
+  90%  { opacity: 0.75; }
+  100% { transform: translateY(-110vh) translateX(40px) scale(0.4); opacity: 0; }
+}
+
+/* Water drop fall animation */
+.drop {
+  position: absolute;
+  animation: dropFall linear infinite;
+  pointer-events: none;
+  border-radius: 0 50% 50% 50%;
+}
+
+@keyframes dropFall {
+  0%   { transform: translateY(-30px) rotate(45deg); opacity: 0; }
+  8%   { opacity: 0.7; }
+  92%  { opacity: 0.7; }
+  100% { transform: translateY(105vh) rotate(45deg); opacity: 0; }
+}
+
+/* Spark rise animation */
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  animation: sparkRise ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkRise {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  15%  { opacity: 0.9; }
+  85%  { opacity: 0.6; }
+  100% { transform: translateY(-90vh) translateX(var(--dx, 20px)) scale(0.2); opacity: 0; }
+}
+
+/* Ember fly animation (CardCreole) */
+.ember {
+  position: absolute;
+  border-radius: 50%;
+  animation: emberFly ease-out infinite;
+  pointer-events: none;
+}
+@keyframes emberFly {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { opacity: 0.8; }
+  100% { transform: translateY(-110vh) translateX(var(--dx, 50px)) scale(0.1); opacity: 0; }
+}
+
+/* Dust mote drift animation (CardLontan) */
+.mote {
+  position: absolute;
+  border-radius: 50%;
+  animation: dustDrift ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes dustDrift {
+  0%   { transform: translateX(0) translateY(0); opacity: 0; }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.6; }
+  100% { transform: translateX(120px) translateY(-40px); opacity: 0; }
+}
+
+/* Shimmer flash animation (CardSoleil) */
+.glint {
+  position: absolute;
+  animation: glintFlash ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes glintFlash {
+  0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+  50%       { opacity: 1; transform: scale(1.2) rotate(15deg); }
+}
+
+/* Snow fall animation (CardHauts) */
+.snowflake {
+  position: absolute;
+  border-radius: 50%;
+  animation: snowFall linear infinite;
+  pointer-events: none;
+}
+@keyframes snowFall {
+  0%   { transform: translateY(-20px) translateX(0); opacity: 0; }
+  8%   { opacity: 0.85; }
+  92%  { opacity: 0.85; }
+  100% { transform: translateY(110vh) translateX(var(--dx, 30px)); opacity: 0; }
+}
+
+/* Steam rise animation (CardGourmande) */
+.steam {
+  position: absolute;
+  border-radius: 50%;
+  animation: steamRise ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes steamRise {
+  0%   { transform: translateY(0) translateX(0) scaleX(1); opacity: 0; }
+  15%  { opacity: 0.5; }
+  50%  { transform: translateY(-50vh) translateX(var(--dx, 20px)) scaleX(1.8); opacity: 0.3; }
+  100% { transform: translateY(-100vh) translateX(var(--dx2, -10px)) scaleX(2.5); opacity: 0; }
+}
+
 /* Card hover effect */
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
