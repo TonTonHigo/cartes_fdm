@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
+import { ensureContrast } from '../../utils/colorUtils'
 
 export default function CardSunset({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
+  const safeAccentOnDark = ensureContrast(accentColor, '#2d1b69')
   const starsRef = useRef(null)
 
   useEffect(() => {
@@ -94,9 +96,9 @@ export default function CardSunset({ data, fullscreen = false }) {
 
         <div className="py-1">
           <div className="flex items-center gap-2 justify-center">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-300 opacity-60" />
-            <span className="text-amber-300 text-lg">★</span>
-            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-300 opacity-60" />
+            <div className="h-px flex-1 opacity-60" style={{ background: `linear-gradient(to right, transparent, ${safeAccentOnDark})` }} />
+            <span className="text-lg" style={{ color: safeAccentOnDark }}>★</span>
+            <div className="h-px flex-1 opacity-60" style={{ background: `linear-gradient(to left, transparent, ${safeAccentOnDark})` }} />
           </div>
         </div>
 
@@ -108,7 +110,7 @@ export default function CardSunset({ data, fullscreen = false }) {
         </p>
 
         <div className="pt-2">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script text-amber-300`}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccentOnDark }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (

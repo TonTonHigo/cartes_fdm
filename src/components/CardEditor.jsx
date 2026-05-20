@@ -48,7 +48,7 @@ const ACCENT_COLORS = [
   { value: '#ec4899', label: 'Fuchsia' },
   { value: '#a855f7', label: 'Violet' },
   { value: '#3b82f6', label: 'Bleu' },
-  { value: '#10b981', label: 'Émeraude' },
+  { value: '#047857', label: 'Émeraude' },
   { value: '#f59e0b', label: 'Or' },
 ]
 
@@ -115,7 +115,7 @@ export default function CardEditor() {
           <h1 className="text-4xl md:text-5xl font-serif-display font-bold text-rose-700 italic mb-2">
             Carte Fête des Mères 2026
           </h1>
-          <p className="text-gray-500 font-sans">Créez une carte unique et envoyez-la avec amour</p>
+          <p className="text-gray-600 font-sans">Créez une carte unique et envoyez-la avec amour</p>
         </div>
 
         {/* Step indicator */}
@@ -158,7 +158,7 @@ export default function CardEditor() {
               <button
                 onClick={() => setStep(s => Math.max(s - 1, 0))}
                 disabled={step === 0}
-                className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-600 font-sans text-sm
+                className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm
                   hover:bg-rose-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               >
                 ← Retour
@@ -168,7 +168,7 @@ export default function CardEditor() {
                   onClick={handleNext}
                   className="px-6 py-2.5 rounded-xl text-white font-sans text-sm font-bold shadow-lg
                     hover:opacity-90 active:scale-95 transition-all"
-                  style={{ background: 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+                  style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
                 >
                   Suivant →
                 </button>
@@ -178,7 +178,7 @@ export default function CardEditor() {
 
           {/* Right: Live preview */}
           <div className="sticky top-8">
-            <p className="text-center text-sm text-gray-400 mb-3 font-sans uppercase tracking-wide">
+            <p className="text-center text-sm text-gray-600 mb-3 font-sans uppercase tracking-wide">
               Aperçu de la carte
             </p>
             <div className="shadow-2xl rounded-2xl overflow-hidden card-hover">
@@ -203,13 +203,13 @@ function StepIndicator({ steps, current }) {
                   ? 'text-white shadow-lg scale-110'
                   : i < current
                   ? 'text-white'
-                  : 'bg-gray-100 text-gray-400'
+                  : 'bg-gray-100 text-gray-600'
               }`}
-              style={i <= current ? { background: 'linear-gradient(135deg, #f43f5e, #a855f7)' } : {}}
+              style={i <= current ? { background: 'linear-gradient(135deg, #be185d, #7e22ce)' } : {}}
             >
               {i < current ? '✓' : i + 1}
             </div>
-            <span className={`text-xs font-sans ${i === current ? 'text-rose-600 font-bold' : 'text-gray-400'}`}>
+            <span className={`text-xs font-sans ${i === current ? 'text-rose-700 font-bold' : 'text-gray-600'}`}>
               {label}
             </span>
           </div>
@@ -226,7 +226,7 @@ function StepTemplates({ templates, selected, onSelect }) {
   return (
     <div>
       <h2 className="text-xl font-serif-display font-bold text-gray-800 mb-1">Choisissez votre modèle</h2>
-      <p className="text-sm text-gray-400 mb-5 font-sans">4 designs exclusifs pour la Fête des Mères</p>
+      <p className="text-sm text-gray-600 mb-5 font-sans">4 designs exclusifs pour la Fête des Mères</p>
       <div className="grid grid-cols-2 gap-3">
         {templates.map(t => (
           <button
@@ -263,7 +263,7 @@ function StepCustomize({ data, update, colors }) {
     <div className="space-y-5">
       <div>
         <h2 className="text-xl font-serif-display font-bold text-gray-800 mb-1">Personnalisez votre carte</h2>
-        <p className="text-sm text-gray-400 font-sans">Les modifications s'affichent en temps réel</p>
+        <p className="text-sm text-gray-600 font-sans">Les modifications s'affichent en temps réel</p>
       </div>
 
       <Field label="Pour (prénom ou surnom)" required>
@@ -289,12 +289,14 @@ function StepCustomize({ data, update, colors }) {
       <Field label="Votre message" required>
         <textarea
           value={data.message}
-          onChange={e => update('message', e.target.value)}
+          onChange={e => update('message', e.target.value.slice(0, 150))}
           rows={4}
           placeholder="Écrivez votre message du cœur..."
           className="w-full px-4 py-2.5 rounded-xl border border-rose-200 font-sans text-sm bg-rose-50/30 transition-all"
         />
-        <p className="text-xs text-gray-400 mt-1 font-sans">{data.message.length} caractères</p>
+        <p className={`text-xs mt-1 font-sans ${data.message.length >= 150 ? 'text-red-700 font-semibold' : 'text-gray-600'}`}>
+          {data.message.length}/150 caractères
+        </p>
       </Field>
 
       <Field label="Signature">
@@ -321,7 +323,7 @@ function StepCustomize({ data, update, colors }) {
             />
           ))}
           <label className="w-8 h-8 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-rose-400 transition-all" title="Couleur personnalisée">
-            <span className="text-gray-400 text-xs">+</span>
+            <span className="text-gray-600 text-xs">+</span>
             <input
               type="color"
               value={data.accentColor}
@@ -340,7 +342,7 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
     <div className="space-y-5">
       <div>
         <h2 className="text-xl font-serif-display font-bold text-gray-800 mb-1">Envoyer la carte</h2>
-        <p className="text-sm text-gray-400 font-sans">Partagez l'amour avec votre maman 💕</p>
+        <p className="text-sm text-gray-600 font-sans">Partagez l'amour avec votre maman 💕</p>
       </div>
 
       {/* Card URL */}
@@ -355,12 +357,12 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
           <button
             onClick={onCopy}
             className="px-3 py-2 rounded-lg text-white text-xs font-bold font-sans transition-all active:scale-95"
-            style={{ background: copied ? '#10b981' : 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+            style={{ background: copied ? '#047857' : 'linear-gradient(135deg, #be185d, #7e22ce)' }}
           >
             {copied ? '✓ Copié !' : 'Copier'}
           </button>
         </div>
-        <p className="text-xs text-gray-400 mt-2 font-sans">
+        <p className="text-xs text-gray-600 mt-2 font-sans">
           Vous pouvez aussi envoyer ce lien directement par message ou réseaux sociaux.
         </p>
       </div>
@@ -379,7 +381,7 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
           </Field>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-600 font-sans">
+            <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 font-sans">
               ⚠️ {error}
             </div>
           )}
@@ -389,7 +391,7 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
             disabled={sending || !email}
             className="w-full py-3.5 rounded-xl text-white font-bold font-sans text-base shadow-lg
               hover:opacity-90 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            style={{ background: 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+            style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
           >
             {sending ? (
               <span className="flex items-center justify-center gap-2">
@@ -422,7 +424,7 @@ function Field({ label, children, required }) {
   return (
     <div>
       <label className="block text-sm font-sans font-semibold text-gray-700 mb-1.5">
-        {label}{required && <span className="text-rose-500 ml-0.5">*</span>}
+        {label}{required && <span className="text-rose-700 ml-0.5">*</span>}
       </label>
       {children}
     </div>
@@ -458,14 +460,14 @@ function SuccessScreen({ cardUrl, recipientName, onReset }) {
           <button
             onClick={copyUrl}
             className="w-full py-2.5 rounded-xl text-white font-bold font-sans transition-all active:scale-95"
-            style={{ background: copied ? '#10b981' : 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+            style={{ background: copied ? '#047857' : 'linear-gradient(135deg, #be185d, #7e22ce)' }}
           >
             {copied ? '✓ Lien copié !' : 'Copier le lien'}
           </button>
         </div>
         <button
           onClick={onReset}
-          className="text-sm text-gray-400 hover:text-rose-500 font-sans underline transition-colors"
+          className="text-sm text-gray-600 hover:text-rose-700 font-sans underline transition-colors"
         >
           Créer une nouvelle carte
         </button>

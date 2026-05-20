@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
+import { ensureContrast } from '../../utils/colorUtils'
 
 export default function CardRoyal({ data, fullscreen = false }) {
-  const { senderName, recipientName, message, signature } = data
+  const { senderName, recipientName, message, signature, accentColor } = data
+  const safeAccentOnDark = ensureContrast(accentColor, '#1e0a3c')
   const particlesRef = useRef(null)
 
   useEffect(() => {
@@ -97,13 +99,13 @@ export default function CardRoyal({ data, fullscreen = false }) {
 
         <div className="pt-3 space-y-1">
           <p
-            className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script text-amber-300`}
-            style={{ textShadow: '0 0 20px rgba(251,191,36,0.5)' }}
+            className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`}
+            style={{ color: safeAccentOnDark, textShadow: `0 0 20px ${safeAccentOnDark}80` }}
           >
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-amber-400 opacity-80`}>— {senderName}</p>
+            <p className={`${smallText} opacity-80`} style={{ color: safeAccentOnDark }}>— {senderName}</p>
           )}
         </div>
       </div>

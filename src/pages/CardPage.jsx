@@ -43,11 +43,11 @@ export default function CardPage() {
       <div className="min-h-screen flex flex-col items-center justify-center bg-rose-50 p-6 text-center">
         <div className="text-6xl mb-4">🥀</div>
         <h1 className="text-2xl font-serif-display font-bold text-rose-700 mb-2">Carte introuvable</h1>
-        <p className="text-gray-500 font-sans mb-6">Ce lien semble invalide ou corrompu.</p>
+        <p className="text-gray-600 font-sans mb-6">Ce lien semble invalide ou corrompu.</p>
         <Link
           to="/"
           className="px-6 py-3 rounded-xl text-white font-bold font-sans shadow-lg hover:opacity-90 transition-all"
-          style={{ background: 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+          style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
         >
           Créer une carte
         </Link>
@@ -60,7 +60,7 @@ export default function CardPage() {
       <div className="min-h-screen flex items-center justify-center bg-rose-50">
         <div className="text-center space-y-4 animate-pulse">
           <div className="text-5xl">💐</div>
-          <p className="text-rose-400 font-serif-display text-xl italic">Chargement de votre carte…</p>
+          <p className="text-rose-700 font-serif-display text-xl italic">Chargement de votre carte…</p>
         </div>
       </div>
     )
@@ -85,7 +85,7 @@ export default function CardPage() {
           />
           <Link to="/" className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl hover:bg-rose-50 transition-colors group">
             <span className="text-lg">🎨</span>
-            <span className="text-xs font-sans text-gray-500 group-hover:text-rose-500">Créer</span>
+            <span className="text-xs font-sans text-gray-600 group-hover:text-rose-700">Créer</span>
           </Link>
         </div>
       </div>
@@ -100,7 +100,7 @@ function ActionButton({ onClick, icon, label }) {
       className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl hover:bg-rose-50 transition-colors group"
     >
       <span className="text-lg">{icon}</span>
-      <span className="text-xs font-sans text-gray-500 group-hover:text-rose-500">{label}</span>
+      <span className="text-xs font-sans text-gray-600 group-hover:text-rose-700">{label}</span>
     </button>
   )
 }

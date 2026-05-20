@@ -1,5 +1,8 @@
+import { ensureContrast } from '../../utils/colorUtils'
+
 export default function CardAquarelle({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
+  const safeAccentOnWhite = ensureContrast(accentColor, '#ffffff')
 
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -70,7 +73,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         <div className="flex justify-center">
           <div
             className="px-4 py-1 rounded-full text-white"
-            style={{ background: `linear-gradient(135deg, ${accentColor}, #c084fc)`, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}
+            style={{ background: `linear-gradient(135deg, ${safeAccentOnWhite}, #7e22ce)`, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}
           >
             Fête des Mères 2026
           </div>
@@ -94,11 +97,11 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: accentColor }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccentOnWhite }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText}`} style={{ color: '#6b7280', fontFamily: '"Lato", sans-serif' }}>
+            <p className={`${smallText}`} style={{ color: '#4b5563', fontFamily: '"Lato", sans-serif' }}>
               — {senderName}
             </p>
           )}

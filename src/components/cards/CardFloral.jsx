@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { ensureContrast } from '../../utils/colorUtils'
 
 const FLOWER_SVG = (color = '#f9a8d4') => `
   <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
@@ -42,6 +43,7 @@ export default function CardFloral({ data, fullscreen = false }) {
     return () => petals.forEach(p => p.remove())
   }, [fullscreen, accentColor])
 
+  const safeAccent = ensureContrast(accentColor, '#fce7f3')
   const scale = fullscreen ? 'text-base' : 'text-xs'
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -75,7 +77,7 @@ export default function CardFloral({ data, fullscreen = false }) {
       />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${scale} font-sans uppercase tracking-widest`} style={{ color: accentColor }}>
+        <p className={`${scale} font-sans uppercase tracking-widest`} style={{ color: safeAccent }}>
           Fête des Mères 2026
         </p>
 
