@@ -55,6 +55,23 @@
   50% { opacity: 0.2; transform: scale(0.7); }
 }
 
+/* Floating hearts background */
+.heart-float {
+  position: fixed;
+  pointer-events: none;
+  animation: heartFloat ease-in-out infinite;
+  z-index: 0;
+  bottom: -40px;
+}
+
+@keyframes heartFloat {
+  0%   { transform: translateY(0) translateX(0) rotate(-15deg);                        opacity: 0; }
+  8%   { opacity: var(--op, 0.2); }
+  50%  { transform: translateY(-50vh) translateX(var(--sway, 25px)) rotate(10deg);     opacity: var(--op, 0.2); }
+  92%  { opacity: var(--op, 0.2); }
+  100% { transform: translateY(-110vh) translateX(0) rotate(-15deg);                   opacity: 0; }
+}
+
 /* Bubble float up animation */
 .bubble {
   position: absolute;

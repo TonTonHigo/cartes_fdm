@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import CardRenderer from './CardRenderer'
 import { encodeCard, getCardUrl } from '../utils/cardEncoder'
 import { sendCardByEmail, isEmailJsConfigured } from '../utils/emailService'
@@ -147,97 +147,115 @@ export default function CardEditor() {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  const navButtons = (
+    <div className="flex justify-between items-center w-full">
+      <div className="flex gap-2">
+        {step > 0 && (
+          <button
+            onClick={() => setStep(s => s - 1)}
+            className="px-4 py-2 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm hover:bg-rose-50 transition-all"
+          >
+            ← Retour
+          </button>
+        )}
+        {step === 2 && (
+          <button
+            onClick={() => { setStep(0); setData(DEFAULT_DATA); setCardUrl(null); setEmail('') }}
+            className="px-4 py-2 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm hover:bg-rose-50 transition-all"
+          >
+            🎨 Nouvelle carte
+          </button>
+        )}
+      </div>
+      {step === 1 && (
+        <button
+          onClick={handleNext}
+          className="px-5 py-2 rounded-xl text-white font-sans text-sm font-bold shadow-lg
+            hover:opacity-90 active:scale-95 transition-all"
+          style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
+        >
+          Suivant →
+        </button>
+      )}
+    </div>
+  )
+
   if (sent) return <SuccessScreen cardUrl={cardUrl} recipientName={data.recipientName} onReset={() => { setSent(false); setStep(0); setData(DEFAULT_DATA); setCardUrl(null) }} />
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-purple-50 py-8 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="h-dvh flex flex-col overflow-hidden bg-gradient-to-br from-rose-50 via-white to-purple-50 px-4 pt-4 pb-[72px]">
+      <HeartBackground />
+
+      <div className="flex-1 min-h-0 flex flex-col mx-auto w-full max-w-xl" style={{ position: 'relative', zIndex: 1 }}>
         {/* Header */}
-        <div className="text-center mb-8 animate-[slideUp_0.6s_ease-out_forwards]">
-          <h1 className="text-4xl md:text-5xl font-serif-display font-bold text-rose-700 italic mb-2">
+        <div className="flex-shrink-0 text-center mb-3">
+          <h1 className="text-2xl font-serif-display font-bold text-rose-700 italic mb-1">
             Carte Fête des Mères 2026
           </h1>
-          <p className="text-gray-600 font-sans">Créez une carte unique et envoyez-la avec amour</p>
         </div>
 
         {/* Step indicator */}
-        <StepIndicator steps={STEPS} current={step} />
+        <div className="flex-shrink-0">
+          <StepIndicator steps={STEPS} current={step} />
+        </div>
 
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Left: Editor */}
-          <div className="bg-white rounded-2xl shadow-xl p-6 border border-rose-100">
+        {/* Editor panel */}
+        <div className="flex-1 min-h-0 mt-3">
+          <div className="h-full flex flex-col bg-white rounded-2xl shadow-xl p-4 border border-rose-100">
+
             {step === 0 && (
-              <StepTemplates
-                templates={TEMPLATES}
-                selected={data.template}
-                onSelect={t => update('template', t)}
-              />
-            )}
-            {step === 1 && (
-              <StepCustomize
-                data={data}
-                update={update}
-                colors={ACCENT_COLORS}
-              />
-            )}
-            {step === 2 && (
-              <StepSend
-                data={data}
-                cardUrl={cardUrl}
-                email={email}
-                setEmail={setEmail}
-                onSend={handleSend}
-                onCopy={copyUrl}
-                copied={copied}
-                sending={sending}
-                error={error}
-                emailjsConfigured={isEmailJsConfigured()}
-              />
-            )}
-
-            {/* Navigation buttons */}
-            <div className="flex justify-between mt-6 pt-4 border-t border-rose-50">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setStep(s => Math.max(s - 1, 0))}
-                  disabled={step === 0}
-                  className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm
-                    hover:bg-rose-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-                >
-                  ← Retour
-                </button>
-                {step === 2 && (
-                  <button
-                    onClick={() => { setStep(0); setData(DEFAULT_DATA); setCardUrl(null); setEmail('') }}
-                    className="px-5 py-2.5 rounded-xl border border-rose-200 text-rose-700 font-sans text-sm hover:bg-rose-50 transition-all"
-                  >
-                    🎨 Nouvelle carte
-                  </button>
-                )}
+              <div className="flex-1 min-h-0">
+                <StepTemplates
+                  templates={TEMPLATES}
+                  selected={data.template}
+                  onSelect={t => update('template', t)}
+                  onConfirm={() => setStep(1)}
+                  data={data}
+                />
               </div>
-              {step < 2 ? (
-                <button
-                  onClick={handleNext}
-                  className="px-6 py-2.5 rounded-xl text-white font-sans text-sm font-bold shadow-lg
-                    hover:opacity-90 active:scale-95 transition-all"
-                  style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
-                >
-                  Suivant →
-                </button>
-              ) : null}
-            </div>
-          </div>
+            )}
 
-          {/* Right: Live preview */}
-          <div className="sticky top-8">
-            <p className="text-center text-sm text-gray-600 mb-3 font-sans uppercase tracking-wide">
-              Aperçu de la carte
-            </p>
-            <div className="shadow-2xl rounded-2xl overflow-hidden card-hover">
-              <CardRenderer data={data} fullscreen={false} />
-            </div>
+            {step === 1 && (
+              <>
+                <div className="flex-shrink-0 mb-3 rounded-xl overflow-hidden shadow-md" style={{ height: 210 }}>
+                  <div style={{ width: '154%', transform: 'scale(0.65)', transformOrigin: 'top left', pointerEvents: 'none' }}>
+                    <CardRenderer data={data} fullscreen={false} />
+                  </div>
+                </div>
+                <div className="flex-1 min-h-0">
+                  <StepCustomize data={data} update={update} colors={ACCENT_COLORS} />
+                </div>
+              </>
+            )}
+
+            {step === 2 && (
+              <div className="flex-1 min-h-0 overflow-y-auto">
+                <div className="mb-3 rounded-xl overflow-hidden shadow-md flex-shrink-0" style={{ height: 210 }}>
+                  <div style={{ width: '154%', transform: 'scale(0.65)', transformOrigin: 'top left', pointerEvents: 'none' }}>
+                    <CardRenderer data={data} fullscreen={false} />
+                  </div>
+                </div>
+                <StepSend
+                  data={data}
+                  cardUrl={cardUrl}
+                  email={email}
+                  setEmail={setEmail}
+                  onSend={handleSend}
+                  onCopy={copyUrl}
+                  copied={copied}
+                  sending={sending}
+                  error={error}
+                  emailjsConfigured={isEmailJsConfigured()}
+                />
+              </div>
+            )}
           </div>
         </div>
+      </div>
+
+      {/* Barre de navigation fixée en bas */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 px-4 py-3 z-40">
+        {navButtons}
       </div>
     </div>
   )
@@ -274,36 +292,30 @@ function StepIndicator({ steps, current }) {
   )
 }
 
-function StepTemplates({ templates, selected, onSelect }) {
+function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
   return (
-    <div>
-      <h2 className="text-xl font-serif-display font-bold text-gray-800 mb-1">Choisissez votre modèle</h2>
-      <p className="text-sm text-gray-600 mb-5 font-sans">4 designs exclusifs pour la Fête des Mères</p>
-      <div className="grid grid-cols-2 gap-3">
+    <div className="h-full flex flex-col">
+      <h2 className="flex-shrink-0 text-base font-serif-display font-bold text-gray-800 mb-1">
+        Faites défiler et choisissez votre carte
+      </h2>
+      <p className="flex-shrink-0 text-xs text-gray-600 mb-2 font-sans">Tapez pour personnaliser</p>
+      <div className="flex-1 min-h-0 overflow-y-auto snap-y snap-mandatory">
         {templates.map(t => (
-          <button
-            key={t.id}
-            onClick={() => onSelect(t.id)}
-            className={`relative rounded-xl p-4 text-left transition-all duration-200 border-2 ${
-              selected === t.id
-                ? 'border-rose-500 shadow-lg scale-[1.02]'
-                : 'border-transparent hover:border-rose-200 hover:scale-[1.01]'
-            }`}
-            style={{ background: t.preview }}
-          >
-            {selected === t.id && (
-              <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-rose-500 flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
-              </div>
-            )}
-            <div className="text-2xl mb-2">{t.emoji}</div>
-            <div className="font-serif-display font-bold text-white text-shadow" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
-              {t.name}
+          <div key={t.id} className="snap-start snap-always pb-3">
+            <button
+              onClick={() => { onSelect(t.id); onConfirm() }}
+              className={`w-full rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
+                selected === t.id ? 'border-rose-500 shadow-xl' : 'border-transparent'
+              }`}
+            >
+              <CardRenderer data={{ ...data, template: t.id }} fullscreen={false} />
+            </button>
+            <div className="flex items-center justify-center gap-1.5 mt-1.5">
+              <span className="text-base">{t.emoji}</span>
+              <span className="text-sm font-bold text-gray-700 font-serif-display">{t.name}</span>
+              <span className="text-xs text-gray-500">· {t.desc}</span>
             </div>
-            <div className="text-xs mt-0.5 font-sans" style={{ color: 'rgba(255,255,255,0.8)', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
-              {t.desc}
-            </div>
-          </button>
+          </div>
         ))}
       </div>
     </div>
@@ -312,11 +324,7 @@ function StepTemplates({ templates, selected, onSelect }) {
 
 function StepCustomize({ data, update, colors }) {
   return (
-    <div className="space-y-5">
-      <div>
-        <h2 className="text-xl font-serif-display font-bold text-gray-800 mb-1">Personnalisez votre carte</h2>
-        <p className="text-sm text-gray-600 font-sans">Les modifications s'affichent en temps réel</p>
-      </div>
+    <div className="h-full space-y-3 overflow-y-auto pr-0.5">
 
       <Field label="Pour (prénom ou surnom)" required>
         <input
@@ -391,10 +399,9 @@ function StepCustomize({ data, update, colors }) {
 
 function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, sending, error, emailjsConfigured }) {
   return (
-    <div className="space-y-5">
+    <div className="space-y-3">
       <div>
-        <h2 className="text-xl font-serif-display font-bold text-gray-800 mb-1">Envoyer la carte</h2>
-        <p className="text-sm text-gray-600 font-sans">Partagez l'amour avec votre maman 💕</p>
+        <h2 className="text-base font-serif-display font-bold text-gray-800 mb-0.5">Envoyer la carte</h2>
       </div>
 
       {/* Card URL */}
@@ -414,22 +421,32 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
             {copied ? '✓ Copié !' : 'Copier'}
           </button>
         </div>
-        <p className="text-xs text-gray-600 mt-2 font-sans">
-          Vous pouvez aussi envoyer ce lien directement par message ou réseaux sociaux.
-        </p>
       </div>
 
       {/* Email section */}
       {emailjsConfigured ? (
         <div className="space-y-3">
           <Field label={`Email de ${data.recipientName || 'Maman'}`} required>
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="maman@exemple.fr"
-              className="w-full px-4 py-2.5 rounded-xl border border-rose-200 font-sans text-sm bg-rose-50/30 transition-all"
-            />
+            <div className="flex gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="maman@exemple.fr"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-rose-200 font-sans text-sm bg-rose-50/30 transition-all"
+              />
+              <button
+                onClick={onSend}
+                disabled={sending || !email}
+                className="flex-shrink-0 px-3 py-2.5 rounded-xl text-white font-bold font-sans text-sm shadow-lg
+                  hover:opacity-90 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
+              >
+                {sending ? (
+                  <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin block" />
+                ) : '💌 Envoyer'}
+              </button>
+            </div>
           </Field>
 
           {error && (
@@ -437,23 +454,6 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
               ⚠️ {error}
             </div>
           )}
-
-          <button
-            onClick={onSend}
-            disabled={sending || !email}
-            className="w-full py-3.5 rounded-xl text-white font-bold font-sans text-base shadow-lg
-              hover:opacity-90 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
-          >
-            {sending ? (
-              <span className="flex items-center justify-center gap-2">
-                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Envoi en cours…
-              </span>
-            ) : (
-              '💌 Envoyer la carte par email'
-            )}
-          </button>
         </div>
       ) : (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 font-sans space-y-2">
@@ -468,6 +468,48 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
           <p className="text-xs">En attendant, copiez le lien ci-dessus et partagez-le manuellement.</p>
         </div>
       )}
+    </div>
+  )
+}
+
+function HeartBackground() {
+  const hearts = useMemo(() => {
+    const colors = ['#fda4af', '#f9a8d4', '#c084fc', '#fb923c', '#f43f5e', '#e879f9']
+    return Array.from({ length: 18 }, (_, i) => ({
+      id: i,
+      left: `${Math.round(Math.random() * 92)}%`,
+      size: Math.round(Math.random() * 20 + 10),
+      color: colors[i % colors.length],
+      duration: Math.round(Math.random() * 8 + 8),
+      delay: Math.round(Math.random() * 8),
+      sway: Math.round((Math.random() - 0.5) * 70),
+      opacity: (Math.random() * 0.2 + 0.15).toFixed(2),
+    }))
+  }, [])
+
+  const heartPath = 'M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z'
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+      {hearts.map(h => (
+        <div
+          key={h.id}
+          className="heart-float"
+          style={{
+            left: h.left,
+            width: h.size,
+            height: h.size,
+            animationDuration: `${h.duration}s`,
+            animationDelay: `${h.delay}s`,
+            '--op': h.opacity,
+            '--sway': `${h.sway}px`,
+          }}
+        >
+          <svg viewBox="0 0 24 24" width={h.size} height={h.size} fill={h.color}>
+            <path d={heartPath} />
+          </svg>
+        </div>
+      ))}
     </div>
   )
 }
