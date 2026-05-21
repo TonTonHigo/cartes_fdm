@@ -46,25 +46,18 @@ export default function CardAquarelle({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'white',
+        backgroundImage: 'url(/images/cartes/maman_enfants.png), linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={bubblesRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(255,255,255,0.5)' }} />
+      <div ref={bubblesRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
-      {/* Watercolor blobs */}
-      {blobs.map((blob, i) => (
-        <div key={i} className="absolute pointer-events-none" style={{
-          top: blob.top, left: blob.left, right: blob.right, bottom: blob.bottom,
-          width: fullscreen ? blob.w * 1.5 : blob.w,
-          height: fullscreen ? blob.h * 1.5 : blob.h,
-          background: blob.color, opacity: blob.opacity,
-          borderRadius: blob.r, filter: 'blur(2px)',
-        }} />
-      ))}
 
       {/* Dots pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-10">

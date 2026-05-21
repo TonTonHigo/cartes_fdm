@@ -37,14 +37,17 @@ export default function CardLontan({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(160deg, #2C1A0E 0%, #5C3D1E 30%, #8B6340 60%, #C4A882 85%, #E8D5B0 100%)',
+        backgroundImage: 'url(/images/cartes/lontan.png), linear-gradient(160deg, #2C1A0E 0%, #5C3D1E 30%, #8B6340 60%, #C4A882 85%, #E8D5B0 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={motesRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(25,12,4,0.5)' }} />
+      <div ref={motesRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Vintage grain overlay */}
       <div className="absolute inset-0 opacity-5 pointer-events-none"

@@ -36,14 +36,17 @@ export default function CardSunset({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(180deg, #1a1035 0%, #2d1b69 20%, #7c3aed 45%, #db2777 65%, #f97316 80%, #fbbf24 100%)',
+        backgroundImage: 'url(/images/cartes/sunset.png), linear-gradient(180deg, #1a1035 0%, #2d1b69 20%, #7c3aed 45%, #db2777 65%, #f97316 80%, #fbbf24 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={starsRef} className="absolute inset-0 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(10,5,30,0.5)' }} />
+      <div ref={starsRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Moon */}
       <div

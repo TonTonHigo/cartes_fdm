@@ -40,14 +40,17 @@ export default function CardSoleil({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(180deg, #0C4A6E 0%, #0284C7 25%, #38BDF8 50%, #7DD3FC 70%, #FDE68A 88%, #F59E0B 100%)',
+        backgroundImage: 'url(/images/cartes/soleil.png), linear-gradient(180deg, #0C4A6E 0%, #0284C7 25%, #38BDF8 50%, #7DD3FC 70%, #FDE68A 88%, #F59E0B 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={sparklesRef} className="absolute inset-0 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(5,35,70,0.45)' }} />
+      <div ref={sparklesRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Sun */}
       <div className="absolute pointer-events-none" style={{

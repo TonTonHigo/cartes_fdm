@@ -184,6 +184,7 @@ export default function CardEditor() {
 
   return (
     <div className="h-dvh flex flex-col overflow-hidden bg-gradient-to-br from-rose-50 via-white to-purple-50 px-4 pt-4 pb-[72px]">
+      <CornerDecorations />
       <HeartBackground />
 
       <div className="flex-1 min-h-0 flex flex-col mx-auto w-full max-w-xl" style={{ position: 'relative', zIndex: 1 }}>
@@ -254,9 +255,11 @@ export default function CardEditor() {
       </div>
 
       {/* Barre de navigation fixée en bas */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 px-4 py-3 z-40">
-        {navButtons}
-      </div>
+      {step > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 px-4 py-3 z-40">
+          {navButtons}
+        </div>
+      )}
     </div>
   )
 }
@@ -468,6 +471,52 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
           <p className="text-xs">En attendant, copiez le lien ci-dessus et partagez-le manuellement.</p>
         </div>
       )}
+    </div>
+  )
+}
+
+function CornerDecorations() {
+  const corners = [
+    {
+      top: 0, left: 0,
+      position: '0% 0%',
+      mask: 'radial-gradient(ellipse 100% 100% at top left, black 45%, transparent 80%)',
+    },
+    {
+      top: 0, right: 0,
+      position: '100% 0%',
+      mask: 'radial-gradient(ellipse 100% 100% at top right, black 30%, transparent 75%)',
+    },
+    {
+      bottom: 0, left: 0,
+      position: '0% 100%',
+      mask: 'radial-gradient(ellipse 60% 70% at bottom left, black 30%, transparent 70%)',
+    },
+    {
+      bottom: 0, right: 0,
+      position: '100% 100%',
+      mask: 'radial-gradient(ellipse 100% 100% at bottom right, black 30%, transparent 75%)',
+    },
+  ]
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+      {corners.map((c, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            top: c.top, left: c.left, right: c.right, bottom: c.bottom,
+            width: 520, height: 620,
+            backgroundImage: 'url(/images/design_fond.png)',
+            backgroundSize: '1400px auto',
+            backgroundPosition: c.position,
+            backgroundRepeat: 'no-repeat',
+            WebkitMaskImage: c.mask,
+            maskImage: c.mask,
+            opacity: 0.95,
+          }}
+        />
+      ))}
     </div>
   )
 }

@@ -38,14 +38,17 @@ export default function CardHauts({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(180deg, #0F1F14 0%, #1A3A22 20%, #2D5A35 45%, #4A7A58 65%, #7A9E82 80%, #B8CCB8 100%)',
+        backgroundImage: 'url(/images/cartes/les_hauts.png), linear-gradient(180deg, #0F1F14 0%, #1A3A22 20%, #2D5A35 45%, #4A7A58 65%, #7A9E82 80%, #B8CCB8 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={flakesRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(8,15,10,0.5)' }} />
+      <div ref={flakesRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Mountain silhouette */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none">

@@ -47,14 +47,17 @@ export default function CardRoyal({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(145deg, #1e0a3c 0%, #2d1557 30%, #1a0a35 60%, #0f0520 100%)',
+        backgroundImage: 'url(/images/cartes/maman_bebe.png), linear-gradient(145deg, #1e0a3c 0%, #2d1557 30%, #1a0a35 60%, #0f0520 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(8,2,25,0.6)' }} />
+      <div ref={particlesRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Gold border */}
       <div

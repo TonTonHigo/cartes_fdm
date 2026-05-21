@@ -70,6 +70,10 @@ export default function CardPage() {
     <div className="relative min-h-screen">
       <div ref={cardRef}>
         <CardRenderer data={data} fullscreen={true} />
+        {/* Logo IFR */}
+        <div className="absolute bottom-4 right-4 z-20 opacity-80">
+          <img src="/images/logo_ifr.png" alt="IFR" style={{ width: 72, height: 'auto' }} />
+        </div>
       </div>
 
       {/* Floating action bar */}

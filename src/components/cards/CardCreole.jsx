@@ -59,14 +59,17 @@ export default function CardCreole({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(145deg, #6B1A0A 0%, #B83A1A 35%, #D4652A 65%, #E8A020 100%)',
+        backgroundImage: 'url(/images/cartes/creole.png), linear-gradient(145deg, #6B1A0A 0%, #B83A1A 35%, #D4652A 65%, #E8A020 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={petalsRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(40,8,4,0.5)' }} />
+      <div ref={petalsRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Corner hibiscus */}
       <div className="absolute top-2 left-2 opacity-70">{hibiscus(sz)}</div>

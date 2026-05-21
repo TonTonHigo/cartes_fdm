@@ -49,14 +49,17 @@ export default function CardGourmande({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(145deg, #2C0F00 0%, #6B2800 30%, #C4501E 65%, #D97706 85%, #F59E0B 100%)',
+        backgroundImage: 'url(/images/cartes/gourmande.png), linear-gradient(145deg, #2C0F00 0%, #6B2800 30%, #C4501E 65%, #D97706 85%, #F59E0B 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={steamRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(25,8,0,0.5)' }} />
+      <div ref={steamRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Spice dots */}
       <div className="absolute inset-0 pointer-events-none">

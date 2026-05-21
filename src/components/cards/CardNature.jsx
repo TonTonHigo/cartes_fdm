@@ -43,14 +43,17 @@ export default function CardNature({ data, fullscreen = false }) {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl ${pad} flex flex-col items-center justify-center text-center`}
+      className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        background: 'linear-gradient(160deg, #071E0A 0%, #0E4020 25%, #1A7A3A 55%, #0C5E6E 80%, #093B4A 100%)',
+        backgroundImage: 'url(/images/cartes/nature.png), linear-gradient(160deg, #071E0A 0%, #0E4020 25%, #1A7A3A 55%, #0C5E6E 80%, #093B4A 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div ref={dropsRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(4,15,7,0.55)' }} />
+      <div ref={dropsRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Water drops */}
       <div className="absolute inset-0 pointer-events-none">
