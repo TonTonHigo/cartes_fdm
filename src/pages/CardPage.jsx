@@ -67,8 +67,10 @@ export default function CardPage() {
   }
 
   return (
-    <div className="relative min-h-screen" ref={cardRef}>
-      <CardRenderer data={data} fullscreen={true} />
+    <div className="relative min-h-screen">
+      <div ref={cardRef}>
+        <CardRenderer data={data} fullscreen={true} />
+      </div>
 
       {/* Floating action bar */}
       <div
@@ -83,10 +85,6 @@ export default function CardPage() {
             icon="📤"
             label="Partager"
           />
-          <Link to="/" className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl hover:bg-rose-50 transition-colors group">
-            <span className="text-lg">🎨</span>
-            <span className="text-xs font-sans text-gray-600 group-hover:text-rose-700">Créer</span>
-          </Link>
         </div>
       </div>
     </div>

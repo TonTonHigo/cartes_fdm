@@ -299,7 +299,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
         Faites défiler et choisissez votre carte
       </h2>
       <p className="flex-shrink-0 text-xs text-gray-600 mb-2 font-sans">Tapez pour personnaliser</p>
-      <div className="flex-1 min-h-0 overflow-y-auto snap-y snap-mandatory">
+      <div className="flex-1 min-h-0 overflow-y-auto snap-y snap-mandatory px-2 pr-4">
         {templates.map(t => (
           <div key={t.id} className="snap-start snap-always pb-3">
             <button
