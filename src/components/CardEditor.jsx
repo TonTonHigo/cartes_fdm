@@ -187,7 +187,7 @@ export default function CardEditor() {
       <CornerDecorations />
       <HeartBackground />
 
-      <div className="flex-1 min-h-0 flex flex-col mx-auto w-full max-w-xl" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="flex-1 min-h-0 flex flex-col mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-3xl" style={{ position: 'relative', zIndex: 1 }}>
         {/* Header */}
         <div className="flex-shrink-0 text-center mb-3">
           <h1 className="text-2xl font-serif-display font-bold text-rose-700 italic mb-1">
@@ -218,8 +218,8 @@ export default function CardEditor() {
 
             {step === 1 && (
               <>
-                <div className="flex-shrink-0 mb-3 rounded-xl overflow-hidden shadow-md" style={{ height: 210 }}>
-                  <div style={{ width: '154%', transform: 'scale(0.65)', transformOrigin: 'top left', pointerEvents: 'none' }}>
+                <div className="card-preview-container flex-shrink-0 mb-3 rounded-xl overflow-hidden shadow-md">
+                  <div className="card-preview-inner">
                     <CardRenderer data={data} fullscreen={false} />
                   </div>
                 </div>
@@ -486,11 +486,6 @@ function CornerDecorations() {
       top: 0, right: 0,
       position: '100% 0%',
       mask: 'radial-gradient(ellipse 100% 100% at top right, black 30%, transparent 75%)',
-    },
-    {
-      bottom: 0, left: 0,
-      position: '0% 100%',
-      mask: 'radial-gradient(ellipse 60% 70% at bottom left, black 30%, transparent 70%)',
     },
     {
       bottom: 0, right: 0,

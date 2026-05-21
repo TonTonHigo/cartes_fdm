@@ -198,6 +198,25 @@
 ::-webkit-scrollbar-track { background: #fdf2f8; }
 ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 3px; }
 
+/* Responsive card preview */
+.card-preview-container {
+  height: 210px;
+}
+.card-preview-inner {
+  width: 154%;
+  transform: scale(0.65);
+  transform-origin: top left;
+  pointer-events: none;
+}
+@media (min-width: 640px) {
+  .card-preview-container { height: 300px; }
+  .card-preview-inner { width: 118%; transform: scale(0.85); }
+}
+@media (min-width: 1024px) {
+  .card-preview-container { height: 360px; }
+  .card-preview-inner { width: 104%; transform: scale(0.96); }
+}
+
 /* Textarea styling */
 textarea {
   resize: vertical;
