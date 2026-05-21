@@ -61,7 +61,7 @@ export default function CardCreole({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/creole.png), linear-gradient(145deg, #6B1A0A 0%, #B83A1A 35%, #D4652A 65%, #E8A020 100%)',
+        backgroundImage: 'url(/images/cartes/creole.avif), linear-gradient(145deg, #6B1A0A 0%, #B83A1A 35%, #D4652A 65%, #E8A020 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

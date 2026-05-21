@@ -42,7 +42,7 @@ export default function CardSoleil({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/soleil.png), linear-gradient(180deg, #0C4A6E 0%, #0284C7 25%, #38BDF8 50%, #7DD3FC 70%, #FDE68A 88%, #F59E0B 100%)',
+        backgroundImage: 'url(/images/cartes/soleil.avif), linear-gradient(180deg, #0C4A6E 0%, #0284C7 25%, #38BDF8 50%, #7DD3FC 70%, #FDE68A 88%, #F59E0B 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

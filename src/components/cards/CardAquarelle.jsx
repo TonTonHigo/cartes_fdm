@@ -48,7 +48,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/maman_enfants.png), linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
+        backgroundImage: 'url(/images/cartes/maman_enfants.avif), linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

@@ -39,7 +39,7 @@ export default function CardLontan({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/lontan.png), linear-gradient(160deg, #2C1A0E 0%, #5C3D1E 30%, #8B6340 60%, #C4A882 85%, #E8D5B0 100%)',
+        backgroundImage: 'url(/images/cartes/lontan.avif), linear-gradient(160deg, #2C1A0E 0%, #5C3D1E 30%, #8B6340 60%, #C4A882 85%, #E8D5B0 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

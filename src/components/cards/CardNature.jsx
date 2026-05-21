@@ -45,7 +45,7 @@ export default function CardNature({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/nature.png), linear-gradient(160deg, #071E0A 0%, #0E4020 25%, #1A7A3A 55%, #0C5E6E 80%, #093B4A 100%)',
+        backgroundImage: 'url(/images/cartes/nature.avif), linear-gradient(160deg, #071E0A 0%, #0E4020 25%, #1A7A3A 55%, #0C5E6E 80%, #093B4A 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
