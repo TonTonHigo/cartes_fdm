@@ -256,8 +256,10 @@ export default function CardEditor() {
 
       {/* Barre de navigation fixée en bas */}
       {step > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 px-4 py-3 z-40">
-          {navButtons}
+        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 py-3 z-40">
+          <div className="mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-3xl px-4">
+            {navButtons}
+          </div>
         </div>
       )}
     </div>
