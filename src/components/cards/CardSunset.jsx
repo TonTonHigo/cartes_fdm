@@ -55,8 +55,8 @@ export default function CardSunset({ data, fullscreen = false }) {
         style={{
           width: fullscreen ? 70 : 35,
           height: fullscreen ? 70 : 35,
-          background: 'radial-gradient(circle at 35% 35%, #fef3c7, #fbbf24)',
-          boxShadow: '0 0 30px rgba(251,191,36,0.6)',
+          background: `radial-gradient(circle at 35% 35%, ${safeAccentOnDark}cc, ${safeAccentOnDark})`,
+          boxShadow: `0 0 30px ${safeAccentOnDark}99`,
         }}
       />
 
@@ -86,7 +86,7 @@ export default function CardSunset({ data, fullscreen = false }) {
       <div className="relative z-10 space-y-4 max-w-lg">
         <div className="flex justify-center gap-2 mb-2">
           {['✦', '✧', '✦'].map((s, i) => (
-            <span key={i} className={`${smallText} text-yellow-300 opacity-80`}>{s}</span>
+            <span key={i} className={`${smallText} opacity-80`} style={{ color: safeAccentOnDark, textShadow: sh }}>{s}</span>
           ))}
         </div>
 

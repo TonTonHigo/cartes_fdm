@@ -18,7 +18,7 @@ export default function CardRoyal({ data, fullscreen = false }) {
       const size = Math.random() * 5 + 2
       el.style.cssText = `
         width:${size}px; height:${size}px;
-        background: linear-gradient(45deg, #fbbf24, #fde68a);
+        background: ${safeAccentOnDark};
         border-radius: 50%;
         top:${Math.random() * 100}%;
         left:${Math.random() * 100}%;
@@ -38,11 +38,11 @@ export default function CardRoyal({ data, fullscreen = false }) {
 
   const ornament = (
     <svg viewBox="0 0 200 20" className="w-full opacity-60" style={{ maxWidth: fullscreen ? 300 : 180 }}>
-      <line x1="0" y1="10" x2="70" y2="10" stroke="#fbbf24" strokeWidth="1" />
-      <path d="M80,10 L90,3 L100,10 L90,17 Z" fill="#fbbf24" />
-      <path d="M95,10 L100,5 L105,10 L100,15 Z" fill="#fbbf24" />
-      <path d="M110,10 L120,3 L130,10 L120,17 Z" fill="#fbbf24" />
-      <line x1="130" y1="10" x2="200" y2="10" stroke="#fbbf24" strokeWidth="1" />
+      <line x1="0" y1="10" x2="70" y2="10" stroke={safeAccentOnDark} strokeWidth="1" />
+      <path d="M80,10 L90,3 L100,10 L90,17 Z" fill={safeAccentOnDark} />
+      <path d="M95,10 L100,5 L105,10 L100,15 Z" fill={safeAccentOnDark} />
+      <path d="M110,10 L120,3 L130,10 L120,17 Z" fill={safeAccentOnDark} />
+      <line x1="130" y1="10" x2="200" y2="10" stroke={safeAccentOnDark} strokeWidth="1" />
     </svg>
   )
 
@@ -74,8 +74,8 @@ export default function CardRoyal({ data, fullscreen = false }) {
       {['top-4 left-4', 'top-4 right-4 rotate-90', 'bottom-4 left-4 -rotate-90', 'bottom-4 right-4 rotate-180'].map((pos, i) => (
         <div key={i} className={`absolute ${pos} opacity-60`}>
           <svg width={fullscreen ? 28 : 16} height={fullscreen ? 28 : 16} viewBox="0 0 28 28">
-            <path d="M2,2 L2,12 M2,2 L12,2" stroke="#fbbf24" strokeWidth="1.5" fill="none" />
-            <circle cx="2" cy="2" r="2" fill="#fbbf24" />
+            <path d="M2,2 L2,12 M2,2 L12,2" stroke={safeAccentOnDark} strokeWidth="1.5" fill="none" />
+            <circle cx="2" cy="2" r="2" fill={safeAccentOnDark} />
           </svg>
         </div>
       ))}

@@ -172,7 +172,7 @@ export default function CardEditor() {
           onClick={handleNext}
           className="px-5 py-2 rounded-xl text-white font-sans text-sm font-bold shadow-lg
             hover:opacity-90 active:scale-95 transition-all"
-          style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
+          style={{ background: '#be185d' }}
         >
           Suivant →
         </button>
@@ -230,7 +230,7 @@ export default function CardEditor() {
             )}
 
             {step === 2 && (
-              <div className="flex-1 min-h-0 overflow-y-auto">
+              <div className="flex-1 min-h-0 overflow-y-auto pr-3">
                 <div className="mb-3 rounded-xl overflow-hidden shadow-md flex-shrink-0" style={{ height: 210 }}>
                   <div style={{ width: '154%', transform: 'scale(0.65)', transformOrigin: 'top left', pointerEvents: 'none' }}>
                     <CardRenderer data={data} fullscreen={false} />
@@ -278,7 +278,7 @@ function StepIndicator({ steps, current }) {
                   ? 'text-white'
                   : 'bg-gray-100 text-gray-600'
               }`}
-              style={i <= current ? { background: 'linear-gradient(135deg, #be185d, #7e22ce)' } : {}}
+              style={i <= current ? { background: '#be185d' } : {}}
             >
               {i < current ? '✓' : i + 1}
             </div>
@@ -302,24 +302,27 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
         Faites défiler et choisissez votre carte
       </h2>
       <p className="flex-shrink-0 text-xs text-gray-600 mb-2 font-sans">Tapez pour personnaliser</p>
-      <div className="flex-1 min-h-0 overflow-y-auto snap-y snap-mandatory px-2 pr-4">
+      <div className="flex-1 min-h-0 overflow-y-auto px-2 pr-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {templates.map(t => (
-          <div key={t.id} className="snap-start snap-always pb-3">
+          <div key={t.id} className="pb-1">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span className="text-base">{t.emoji}</span>
+              <span className="text-sm font-bold text-gray-700 font-serif-display">{t.name}</span>
+              <span className="text-xs text-gray-500">· {t.desc}</span>
+            </div>
             <button
               onClick={() => { onSelect(t.id); onConfirm() }}
               className={`w-full rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
                 selected === t.id ? 'border-rose-500 shadow-xl' : 'border-transparent'
               }`}
+              style={{ height: '280px' }}
             >
               <CardRenderer data={{ ...data, template: t.id }} fullscreen={false} />
             </button>
-            <div className="flex items-center justify-center gap-1.5 mt-1.5">
-              <span className="text-base">{t.emoji}</span>
-              <span className="text-sm font-bold text-gray-700 font-serif-display">{t.name}</span>
-              <span className="text-xs text-gray-500">· {t.desc}</span>
-            </div>
           </div>
         ))}
+        </div>
       </div>
     </div>
   )
@@ -327,7 +330,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
 
 function StepCustomize({ data, update, colors }) {
   return (
-    <div className="h-full space-y-3 overflow-y-auto pr-0.5">
+    <div className="h-full space-y-3 overflow-y-auto pr-3">
 
       <Field label="Pour (prénom ou surnom)" required>
         <input
@@ -373,16 +376,17 @@ function StepCustomize({ data, update, colors }) {
       </Field>
 
       <Field label="Couleur accent">
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap p-1">
           {colors.map(c => (
             <button
               key={c.value}
               title={c.label}
               onClick={() => update('accentColor', c.value)}
-              className={`w-8 h-8 rounded-full transition-all duration-150 ${
-                data.accentColor === c.value ? 'scale-125 ring-2 ring-offset-2 ring-gray-400' : 'hover:scale-110'
-              }`}
-              style={{ background: c.value }}
+              className="w-8 h-8 rounded-full transition-all duration-150 hover:scale-110"
+              style={{
+                background: c.value,
+                boxShadow: data.accentColor === c.value ? 'inset 0 0 0 2px white, inset 0 0 0 4px rgba(0,0,0,0.35)' : undefined,
+              }}
             />
           ))}
           <label className="w-8 h-8 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-rose-400 transition-all" title="Couleur personnalisée">
@@ -419,7 +423,7 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
           <button
             onClick={onCopy}
             className="px-3 py-2 rounded-lg text-white text-xs font-bold font-sans transition-all active:scale-95"
-            style={{ background: copied ? '#047857' : 'linear-gradient(135deg, #be185d, #7e22ce)' }}
+            style={{ background: copied ? '#047857' : '#be185d' }}
           >
             {copied ? '✓ Copié !' : 'Copier'}
           </button>
@@ -443,7 +447,7 @@ function StepSend({ data, cardUrl, email, setEmail, onSend, onCopy, copied, send
                 disabled={sending || !email}
                 className="flex-shrink-0 px-3 py-2.5 rounded-xl text-white font-bold font-sans text-sm shadow-lg
                   hover:opacity-90 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                style={{ background: 'linear-gradient(135deg, #be185d, #7e22ce)' }}
+                style={{ background: '#be185d' }}
               >
                 {sending ? (
                   <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin block" />
@@ -598,7 +602,7 @@ function SuccessScreen({ cardUrl, recipientName, onReset }) {
           <button
             onClick={copyUrl}
             className="w-full py-2.5 rounded-xl text-white font-bold font-sans transition-all active:scale-95"
-            style={{ background: copied ? '#047857' : 'linear-gradient(135deg, #be185d, #7e22ce)' }}
+            style={{ background: copied ? '#047857' : '#be185d' }}
           >
             {copied ? '✓ Lien copié !' : 'Copier le lien'}
           </button>

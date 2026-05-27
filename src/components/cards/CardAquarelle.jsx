@@ -10,7 +10,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
   useEffect(() => {
     if (!bubblesRef.current) return
     const container = bubblesRef.current
-    const colors = ['#fce7f3', '#ede9fe', '#d1fae5', '#fef3c7', '#fbcfe8', '#ddd6fe']
+    const colors = [accentColor, '#fce7f3', '#ede9fe', '#d1fae5', '#fef3c7', '#fbcfe8']
     const bubbles = []
     for (let i = 0; i < 22; i++) {
       const el = document.createElement('div')
@@ -30,7 +30,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
       bubbles.push(el)
     }
     return () => bubbles.forEach(b => b.remove())
-  }, [fullscreen])
+  }, [fullscreen, accentColor])
 
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -78,7 +78,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
       <div className="relative z-10 space-y-4 max-w-lg">
         <div className="flex justify-center">
           <div className="px-4 py-1 rounded-full text-white"
-            style={{ background: `linear-gradient(135deg, ${safeAccentOnWhite}, #7e22ce)`, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}>
+            style={{ background: safeAccentOnWhite, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}>
             Fête des Mères 2026
           </div>
         </div>

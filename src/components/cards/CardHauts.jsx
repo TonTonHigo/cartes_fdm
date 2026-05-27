@@ -64,7 +64,7 @@ export default function CardHauts({ data, fullscreen = false }) {
         <div key={i} className="absolute left-0 right-0 pointer-events-none" style={{
           top: `${topPct}%`,
           height: fullscreen ? 40 : 20,
-          background: 'linear-gradient(to right, transparent 0%, rgba(184,204,184,0.15) 30%, rgba(184,204,184,0.2) 50%, rgba(184,204,184,0.15) 70%, transparent 100%)',
+          background: `linear-gradient(to right, transparent 0%, ${safeAccent}26 30%, ${safeAccent}33 50%, ${safeAccent}26 70%, transparent 100%)`,
         }} />
       ))}
 

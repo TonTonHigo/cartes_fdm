@@ -67,11 +67,11 @@ export default function CardSoleil({ data, fullscreen = false }) {
               x1="50" y1="50"
               x2={50 + 48 * Math.cos((angle - 90) * Math.PI / 180)}
               y2={50 + 48 * Math.sin((angle - 90) * Math.PI / 180)}
-              stroke="#FDE68A" strokeWidth="2" opacity="0.6"
+              stroke={safeAccent} strokeWidth="2" opacity="0.6"
             />
           ))}
-          <circle cx="50" cy="50" r="28" fill="#FEF08A" opacity="0.9" />
-          <circle cx="50" cy="50" r="20" fill="#FDE047" />
+          <circle cx="50" cy="50" r="28" fill={safeAccent} opacity="0.5" />
+          <circle cx="50" cy="50" r="20" fill={safeAccent} />
         </svg>
       </div>
 
@@ -88,7 +88,7 @@ export default function CardSoleil({ data, fullscreen = false }) {
         { top: '15%', left: '10%' }, { top: '20%', right: '12%' },
         { top: '35%', left: '5%' }, { top: '30%', right: '8%' },
       ].map((pos, i) => (
-        <div key={i} className="absolute pointer-events-none opacity-60" style={{ ...pos, color: '#FDE68A', fontSize: fullscreen ? '1.2rem' : '0.7rem' }}>✦</div>
+        <div key={i} className="absolute pointer-events-none opacity-60" style={{ ...pos, color: safeAccent, fontSize: fullscreen ? '1.2rem' : '0.7rem' }}>✦</div>
       ))}
 
       {/* Border */}

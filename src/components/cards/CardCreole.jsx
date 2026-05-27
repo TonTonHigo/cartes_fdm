@@ -47,12 +47,12 @@ export default function CardCreole({ data, fullscreen = false }) {
           cx={30 + 16 * Math.cos((a * Math.PI) / 180)}
           cy={30 + 16 * Math.sin((a * Math.PI) / 180)}
           rx="11" ry="6"
-          fill="#FF4500" opacity="0.85"
+          fill={safeAccent} opacity="0.85"
           transform={`rotate(${a} ${30 + 16 * Math.cos((a * Math.PI) / 180)} ${30 + 16 * Math.sin((a * Math.PI) / 180)})`}
         />
       ))}
-      <circle cx="30" cy="30" r="8" fill="#FFC300" />
-      <circle cx="30" cy="30" r="4" fill="#FF8C00" />
+      <circle cx="30" cy="30" r="8" fill={safeAccent} opacity="0.7" />
+      <circle cx="30" cy="30" r="4" fill="white" opacity="0.6" />
     </svg>
   )
 

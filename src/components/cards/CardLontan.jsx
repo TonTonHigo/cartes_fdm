@@ -66,10 +66,10 @@ export default function CardLontan({ data, fullscreen = false }) {
           transform: `rotate(${pos.rot}deg)`,
         }}>
           <svg viewBox="0 0 80 120" width={fullscreen ? 120 : 70}>
-            <path d="M40,5 C40,5 75,30 70,70 C65,100 40,115 40,115 C40,115 15,100 10,70 C5,30 40,5 40,5Z" fill="#5C3D1E" />
-            <line x1="40" y1="5" x2="40" y2="115" stroke="#8B6340" strokeWidth="2" opacity="0.6" />
+            <path d="M40,5 C40,5 75,30 70,70 C65,100 40,115 40,115 C40,115 15,100 10,70 C5,30 40,5 40,5Z" fill={safeAccent} />
+            <line x1="40" y1="5" x2="40" y2="115" stroke={safeAccent} strokeWidth="2" opacity="0.8" />
             {[20, 35, 50, 65, 80, 95].map(y => (
-              <line key={y} x1="40" y1={y} x2={40 + 20 * Math.sin(y)} y2={y} stroke="#8B6340" strokeWidth="1" opacity="0.4" />
+              <line key={y} x1="40" y1={y} x2={40 + 20 * Math.sin(y)} y2={y} stroke={safeAccent} strokeWidth="1" opacity="0.6" />
             ))}
           </svg>
         </div>

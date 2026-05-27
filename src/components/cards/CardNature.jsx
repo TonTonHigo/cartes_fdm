@@ -72,8 +72,8 @@ export default function CardNature({ data, fullscreen = false }) {
       {/* Jungle leaves bottom */}
       <div className="absolute bottom-0 left-0 right-0 opacity-30 pointer-events-none">
         <svg viewBox="0 0 400 80" preserveAspectRatio="none" className="w-full" style={{ height: fullscreen ? 100 : 50 }}>
-          <path d="M0,80 Q30,20 60,50 Q80,10 110,45 Q140,5 170,40 Q200,0 230,35 Q260,5 290,40 Q320,10 350,45 Q380,20 400,50 L400,80Z" fill="#0E4020" />
-          <path d="M0,80 Q20,40 40,60 Q60,30 80,55 Q100,25 120,50 Q140,20 160,48 Q180,15 200,45 Q220,10 240,42 Q260,20 280,50 Q300,30 320,55 Q340,25 360,52 Q380,35 400,55 L400,80Z" fill="#1A7A3A" opacity="0.6" />
+          <path d="M0,80 Q30,20 60,50 Q80,10 110,45 Q140,5 170,40 Q200,0 230,35 Q260,5 290,40 Q320,10 350,45 Q380,20 400,50 L400,80Z" fill={safeAccent} />
+          <path d="M0,80 Q20,40 40,60 Q60,30 80,55 Q100,25 120,50 Q140,20 160,48 Q180,15 200,45 Q220,10 240,42 Q260,20 280,50 Q300,30 320,55 Q340,25 360,52 Q380,35 400,55 L400,80Z" fill={safeAccent} opacity="0.6" />
         </svg>
       </div>
 
@@ -82,7 +82,7 @@ export default function CardNature({ data, fullscreen = false }) {
         <svg viewBox="0 0 80 120" width={fullscreen ? 100 : 55}>
           {[0, 1, 2, 3].map(i => (
             <path key={i} d={`M${20 + i * 15},0 Q${22 + i * 15},40 ${18 + i * 15},80 Q${20 + i * 15},100 ${22 + i * 15},120`}
-              stroke="#7FDFFF" strokeWidth="2" fill="none" opacity={0.6 - i * 0.1} />
+              stroke={safeAccent} strokeWidth="2" fill="none" opacity={0.6 - i * 0.1} />
           ))}
         </svg>
       </div>

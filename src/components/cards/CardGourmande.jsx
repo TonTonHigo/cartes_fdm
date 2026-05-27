@@ -40,11 +40,11 @@ export default function CardGourmande({ data, fullscreen = false }) {
   const smallText = fullscreen ? 'text-base' : 'text-xs'
 
   const spices = [
-    { color: '#C0392B', x: 15, y: 20 },
+    { color: safeAccent, x: 15, y: 20 },
     { color: '#E67E22', x: 78, y: 15 },
-    { color: '#F39C12', x: 12, y: 75 },
+    { color: safeAccent, x: 12, y: 75 },
     { color: '#8E44AD', x: 80, y: 78 },
-    { color: '#D35400', x: 50, y: 8 },
+    { color: safeAccent, x: 50, y: 8 },
     { color: '#CB4335', x: 45, y: 88 },
   ]
 
