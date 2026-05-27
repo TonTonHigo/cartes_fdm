@@ -502,7 +502,7 @@ function CornerDecorations() {
           style={{
             top: c.top, left: c.left, right: c.right, bottom: c.bottom,
             width: 520, height: 620,
-            backgroundImage: 'url(/images/design_fond.png)',
+            backgroundImage: 'url(/images/design_fond.avif)',
             backgroundSize: '1400px auto',
             backgroundPosition: c.position,
             backgroundRepeat: 'no-repeat',
