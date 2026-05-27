@@ -4,6 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardRoyal({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccentOnDark = ensureContrast(accentColor, '#1e0a3c')
+  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
   const particlesRef = useRef(null)
 
   useEffect(() => {
@@ -82,12 +83,12 @@ export default function CardRoyal({ data, fullscreen = false }) {
       <div className="relative z-10 space-y-4 max-w-lg">
         <div className="flex justify-center">{ornament}</div>
 
-        <p className={`${smallText} uppercase tracking-[0.3em] text-amber-400`}>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-amber-400`} style={{ textShadow: sh }}>
           Fête des Mères · 2026
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-amber-200`}
-          style={{ textShadow: '0 2px 20px rgba(251,191,36,0.4)' }}>
+          style={{ textShadow: `0 2px 20px rgba(251,191,36,0.4), ${sh}` }}>
           Pour {recipientName || 'Maman'},<br />la plus belle
         </h1>
 
@@ -95,7 +96,7 @@ export default function CardRoyal({ data, fullscreen = false }) {
 
         <p
           className={`${msgSize} leading-relaxed text-purple-100`}
-          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}
+          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}
         >
           {message || 'Je t\'aime de tout mon cœur.'}
         </p>
@@ -103,12 +104,12 @@ export default function CardRoyal({ data, fullscreen = false }) {
         <div className="pt-3 space-y-1">
           <p
             className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`}
-            style={{ color: safeAccentOnDark, textShadow: `0 0 20px ${safeAccentOnDark}80` }}
+            style={{ color: safeAccentOnDark, textShadow: `0 0 20px ${safeAccentOnDark}80, ${sh}` }}
           >
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} opacity-80`} style={{ color: safeAccentOnDark }}>— {senderName}</p>
+            <p className={`${smallText} opacity-80`} style={{ color: safeAccentOnDark, textShadow: sh }}>— {senderName}</p>
           )}
         </div>
       </div>

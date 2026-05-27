@@ -44,6 +44,7 @@ export default function CardFloral({ data, fullscreen = false }) {
   }, [accentColor])
 
   const safeAccent = ensureContrast(accentColor, '#fce7f3')
+  const sh = '0 1px 6px rgba(255,255,255,0.9), 0 2px 12px rgba(255,255,255,0.7)'
   const scale = fullscreen ? 'text-base' : 'text-xs'
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -80,11 +81,11 @@ export default function CardFloral({ data, fullscreen = false }) {
       />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${scale} font-sans uppercase tracking-widest`} style={{ color: safeAccent }}>
+        <p className={`${scale} font-sans uppercase tracking-widest`} style={{ color: safeAccent, textShadow: sh }}>
           Fête des Mères 2026
         </p>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#9d174d' }}>
+        <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#9d174d', textShadow: sh }}>
           Pour toi,<br />{recipientName || 'Maman'}
         </h1>
 
@@ -98,17 +99,17 @@ export default function CardFloral({ data, fullscreen = false }) {
 
         <p
           className={`${msgSize} leading-relaxed font-sans`}
-          style={{ color: '#4a1942', whiteSpace: 'pre-wrap' }}
+          style={{ color: '#4a1942', whiteSpace: 'pre-wrap', textShadow: sh }}
         >
           {message || 'Je t\'aime de tout mon cœur.'}
         </p>
 
         <div className="pt-2">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#be185d' }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#be185d', textShadow: sh }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${scale} font-sans mt-1`} style={{ color: '#9d174d' }}>
+            <p className={`${scale} font-sans mt-1`} style={{ color: '#9d174d', textShadow: sh }}>
               — {senderName}
             </p>
           )}

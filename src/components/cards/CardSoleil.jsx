@@ -4,6 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardSoleil({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccent = ensureContrast(accentColor, '#0284C7')
+  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
   const sparklesRef = useRef(null)
 
   useEffect(() => {
@@ -94,32 +95,32 @@ export default function CardSoleil({ data, fullscreen = false }) {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: '1px solid rgba(253,230,138,0.3)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${smallText} uppercase tracking-[0.3em] text-sky-100`} style={{ opacity: 0.9 }}>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-sky-100`} style={{ opacity: 0.9, textShadow: sh }}>
           Fête des Mères 2026
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-white`}
-          style={{ textShadow: '0 2px 15px rgba(0,0,0,0.4)' }}>
+          style={{ textShadow: sh }}>
           {recipientName || 'Maman'},<br />mon soleil
         </h1>
 
         <div className="flex items-center gap-2 justify-center">
           <div className="h-px flex-1 opacity-40" style={{ background: 'linear-gradient(to right, transparent, #FDE68A)' }} />
-          <span style={{ color: '#FDE68A', fontSize: fullscreen ? '1rem' : '0.65rem' }}>☀</span>
+          <span style={{ color: '#FDE68A', fontSize: fullscreen ? '1rem' : '0.65rem', textShadow: sh }}>☀</span>
           <div className="h-px flex-1 opacity-40" style={{ background: 'linear-gradient(to left, transparent, #FDE68A)' }} />
         </div>
 
         <p className={`${msgSize} leading-relaxed text-sky-50`}
-          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
+          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
           {message || 'Je t\'aime de tout mon cœur.'}
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccent }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccent, textShadow: sh }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-sky-100`} style={{ fontFamily: '"Lato", sans-serif' }}>— {senderName}</p>
+            <p className={`${smallText} text-sky-100`} style={{ fontFamily: '"Lato", sans-serif', textShadow: sh }}>— {senderName}</p>
           )}
         </div>
       </div>

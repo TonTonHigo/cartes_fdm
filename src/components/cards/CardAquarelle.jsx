@@ -4,6 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardAquarelle({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccentOnWhite = ensureContrast(accentColor, '#ffffff')
+  const sh = '0 1px 6px rgba(0,0,0,0.4), 0 2px 10px rgba(0,0,0,0.25)'
   const bubblesRef = useRef(null)
 
   useEffect(() => {
@@ -82,7 +83,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
           </div>
         </div>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#581c87' }}>
+        <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#581c87', textShadow: sh }}>
           À {recipientName || 'Maman'}<br />avec amour
         </h1>
 
@@ -93,16 +94,16 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         </div>
 
         <p className={`${msgSize} leading-relaxed`}
-          style={{ color: '#374151', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
+          style={{ color: '#374151', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
           {message || 'Je t\'aime de tout mon cœur.'}
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccentOnWhite }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccentOnWhite, textShadow: sh }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText}`} style={{ color: '#4b5563', fontFamily: '"Lato", sans-serif' }}>
+            <p className={`${smallText}`} style={{ color: '#4b5563', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
               — {senderName}
             </p>
           )}
