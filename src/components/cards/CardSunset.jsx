@@ -39,7 +39,7 @@ export default function CardSunset({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/sunset.avif), linear-gradient(180deg, #1a1035 0%, #2d1b69 20%, #7c3aed 45%, #db2777 65%, #f97316 80%, #fbbf24 100%)',
+        backgroundImage: 'url(/images/cartes/coucher_soleil.avif), linear-gradient(180deg, #1a1035 0%, #2d1b69 20%, #7c3aed 45%, #db2777 65%, #f97316 80%, #fbbf24 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

@@ -217,37 +217,43 @@ export default function CardEditor() {
             )}
 
             {step === 1 && (
-              <>
-                <div className="card-preview-container flex-shrink-0 mb-3 rounded-xl overflow-hidden shadow-md">
-                  <div className="card-preview-inner">
-                    <CardRenderer data={data} fullscreen={false} />
+              <div className="flex-1 min-h-0 flex flex-col lg:flex-row lg:gap-4">
+                <div className="flex-shrink-0 lg:w-2/5 overflow-hidden">
+                  <div className="card-preview-container rounded-xl overflow-hidden shadow-md mb-3 lg:mb-0">
+                    <div className="card-preview-inner">
+                      <CardRenderer data={data} fullscreen={false} />
+                    </div>
                   </div>
                 </div>
-                <div className="flex-1 min-h-0">
+                <div className="flex-1 min-h-0 overflow-y-auto">
                   <StepCustomize data={data} update={update} colors={ACCENT_COLORS} />
                 </div>
-              </>
+              </div>
             )}
 
             {step === 2 && (
-              <div className="flex-1 min-h-0 overflow-y-auto pr-3">
-                <div className="mb-3 rounded-xl overflow-hidden shadow-md flex-shrink-0" style={{ height: 210 }}>
-                  <div style={{ width: '154%', transform: 'scale(0.65)', transformOrigin: 'top left', pointerEvents: 'none' }}>
-                    <CardRenderer data={data} fullscreen={false} />
+              <div className="flex-1 min-h-0 flex flex-col lg:flex-row lg:gap-4">
+                <div className="flex-shrink-0 lg:w-2/5 overflow-hidden">
+                  <div className="card-preview-container rounded-xl overflow-hidden shadow-md mb-3 lg:mb-0">
+                    <div className="card-preview-inner">
+                      <CardRenderer data={data} fullscreen={false} />
+                    </div>
                   </div>
                 </div>
-                <StepSend
-                  data={data}
-                  cardUrl={cardUrl}
-                  email={email}
-                  setEmail={setEmail}
-                  onSend={handleSend}
-                  onCopy={copyUrl}
-                  copied={copied}
-                  sending={sending}
-                  error={error}
-                  emailjsConfigured={isEmailJsConfigured()}
-                />
+                <div className="flex-1 min-h-0 overflow-y-auto pr-3">
+                  <StepSend
+                    data={data}
+                    cardUrl={cardUrl}
+                    email={email}
+                    setEmail={setEmail}
+                    onSend={handleSend}
+                    onCopy={copyUrl}
+                    copied={copied}
+                    sending={sending}
+                    error={error}
+                    emailjsConfigured={isEmailJsConfigured()}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -313,15 +319,30 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
               <span className="text-sm font-bold text-gray-700 font-serif-display">{t.name}</span>
               <span className="text-xs text-gray-500">· {t.desc}</span>
             </div>
-            <button
-              onClick={() => { onSelect(t.id); onConfirm() }}
-              className={`w-full rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
-                selected === t.id ? 'border-rose-500 shadow-xl' : 'border-transparent'
-              }`}
-              style={{ height: '280px' }}
-            >
-              <CardRenderer data={{ ...data, template: t.id }} fullscreen={false} />
-            </button>
+            <div className="relative card-border-spin">
+              <button
+                onClick={() => { onSelect(t.id); onConfirm() }}
+                className={`w-full rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
+                  selected === t.id ? 'border-transparent shadow-xl' : 'border-transparent'
+                }`}
+                style={{ height: '246px' }}
+              >
+                <div style={{ zoom: 0.88 }}>
+                  <CardRenderer data={{ ...data, template: t.id }} fullscreen={false} />
+                </div>
+              </button>
+              {/* Indicateur de clic — flèche desktop, main tablette */}
+              <img
+                src="/images/arrow-pointer-solid-full.svg"
+                alt=""
+                className="hidden md:block absolute -bottom-3 right-1 w-6 h-6 pointer-events-none [filter:drop-shadow(0_1px_0_black)_drop-shadow(0_-1px_0_black)_drop-shadow(1px_0_0_black)_drop-shadow(-1px_0_0_black)]"
+              />
+              <img
+                src="/images/hand-pointer-solid-full.svg"
+                alt=""
+                className="block md:hidden absolute -bottom-3 right-1 w-6 h-6 pointer-events-none [filter:drop-shadow(0_1px_0_black)_drop-shadow(0_-1px_0_black)_drop-shadow(1px_0_0_black)_drop-shadow(-1px_0_0_black)]"
+              />
+            </div>
           </div>
         ))}
         </div>

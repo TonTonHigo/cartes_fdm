@@ -52,7 +52,7 @@ export default function CardGourmande({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/gourmande.avif), linear-gradient(145deg, #2C0F00 0%, #6B2800 30%, #C4501E 65%, #D97706 85%, #F59E0B 100%)',
+        backgroundImage: 'url(/images/cartes/gournmande.avif), linear-gradient(145deg, #2C0F00 0%, #6B2800 30%, #C4501E 65%, #D97706 85%, #F59E0B 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

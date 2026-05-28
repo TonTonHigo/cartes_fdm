@@ -41,7 +41,7 @@ export default function CardHauts({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/les_hauts.avif), linear-gradient(180deg, #0F1F14 0%, #1A3A22 20%, #2D5A35 45%, #4A7A58 65%, #7A9E82 80%, #B8CCB8 100%)',
+        backgroundImage: 'url(/images/cartes/nuit.avif), linear-gradient(180deg, #0F1F14 0%, #1A3A22 20%, #2D5A35 45%, #4A7A58 65%, #7A9E82 80%, #B8CCB8 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',

@@ -184,6 +184,25 @@
   100% { transform: translateY(-100vh) translateX(var(--dx2, -10px)) scaleX(2.5); opacity: 0; }
 }
 
+/* Animated yellow border for phase 1 cards */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes borderSpin {
+  to { --border-angle: 360deg; }
+}
+.card-border-spin {
+  border-radius: 16px;
+  padding: 2px;
+  background: conic-gradient(from var(--border-angle), #1f2937 0%, transparent 30%, transparent 70%, #1f2937 100%);
+  animation: borderSpin 2.5s linear infinite;
+}
+.card-border-spin > button {
+  border-radius: 14px !important;
+}
+
 /* Card hover effect */
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -213,8 +232,8 @@
   .card-preview-inner { width: 118%; transform: scale(0.85); }
 }
 @media (min-width: 1024px) {
-  .card-preview-container { height: 360px; }
-  .card-preview-inner { width: 104%; transform: scale(0.96); }
+  .card-preview-container { height: 320px; overflow: hidden; }
+  .card-preview-inner { width: 100%; transform: none; }
 }
 
 /* Textarea styling */
