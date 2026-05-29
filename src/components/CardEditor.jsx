@@ -300,7 +300,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
   return (
     <div className="h-full flex flex-col">
       <h2 className="flex-shrink-0 text-base font-serif-display font-bold text-gray-800 mb-1">
-        Faites défiler et choisissez votre carte
+        Faites défiler et choisissez votre thème
       </h2>
       <p className="flex-shrink-0 text-xs text-gray-600 mb-2 font-sans">Tapez pour personnaliser</p>
       <div className="flex-1 min-h-0 overflow-y-auto px-2 pr-2 md:[scrollbar-width:none] md:[&::-webkit-scrollbar]:hidden">
