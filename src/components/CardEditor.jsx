@@ -318,11 +318,13 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
                 className={`w-full rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
                   selected === t.id ? 'border-transparent shadow-xl' : 'border-transparent'
                 }`}
-                style={{ height: '246px' }}
+                style={{ height: '260px' }}
               >
                 <div style={{ zoom: 0.88 }}>
                   <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
                 </div>
+                <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none rounded-b-2xl"
+                  style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))' }} />
               </button>
               {/* Indicateur de clic — flèche desktop, main tablette */}
               <img
