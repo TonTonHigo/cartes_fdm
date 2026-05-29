@@ -132,6 +132,7 @@ export default function CardEditor() {
         recipientName: data.recipientName,
         cardUrl: url,
       })
+      fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ template: data.template, action: 'send' }) }).catch(() => {})
       setSent(true)
     } catch (err) {
       setError(err.message || 'Erreur lors de l\'envoi. Vérifiez la configuration EmailJS.')
@@ -143,6 +144,7 @@ export default function CardEditor() {
   const copyUrl = async () => {
     const url = cardUrl || generateUrl()
     await navigator.clipboard.writeText(url)
+    fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ template: data.template, action: 'copy' }) }).catch(() => {})
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
