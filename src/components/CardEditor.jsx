@@ -315,14 +315,16 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
             <div className="relative card-border-spin">
               <button
                 onClick={() => { onSelect(t.id); onConfirm() }}
-                className={`w-full rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
+                className={`w-full rounded-2xl border-2 transition-all duration-200 ${
                   selected === t.id ? 'border-transparent shadow-xl' : 'border-transparent'
                 }`}
-                style={{ height: '260px' }}
+                style={{ height: '260px', display: 'block', overflow: 'hidden' }}
               >
-                <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
-                <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none rounded-b-2xl"
-                  style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))' }} />
+                <div style={{ height: '260px', overflow: 'hidden', borderRadius: '14px', position: 'relative' }}>
+                  <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
+                  <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none rounded-b-2xl"
+                    style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))' }} />
+                </div>
               </button>
               {/* Indicateur de clic — flèche desktop, main tablette */}
               <img

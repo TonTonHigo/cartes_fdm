@@ -11,6 +11,10 @@
   body {
     @apply bg-rose-50 min-h-screen;
   }
+
+  img {
+    display: block;
+  }
 }
 
 @layer utilities {
@@ -192,6 +196,8 @@
 .card-border-spin {
   border-radius: 16px;
   animation: borderPulse 2.5s ease-in-out infinite;
+  line-height: 0;
+  font-size: 0;
 }
 .card-border-spin > button {
   border-radius: 14px !important;
