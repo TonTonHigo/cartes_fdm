@@ -32,7 +32,7 @@ export default function CardSunset({ data, fullscreen = false }) {
 
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
-  const pad = fullscreen ? 'p-12' : 'p-6'
+  const pad = fullscreen ? 'p-12' : 'p-6 pb-14'
   const smallText = fullscreen ? 'text-base' : 'text-xs'
 
   return (
