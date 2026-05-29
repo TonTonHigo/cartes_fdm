@@ -219,21 +219,17 @@
 
 /* Responsive card preview */
 .card-preview-container {
-  height: 210px;
+  overflow: hidden;
 }
 .card-preview-inner {
-  width: 154%;
-  transform: scale(0.65);
-  transform-origin: top left;
+  zoom: 0.55;
   pointer-events: none;
 }
 @media (min-width: 640px) {
-  .card-preview-container { height: 300px; }
-  .card-preview-inner { width: 118%; transform: scale(0.85); }
+  .card-preview-inner { zoom: 0.75; }
 }
 @media (min-width: 1024px) {
-  .card-preview-container { height: 320px; overflow: hidden; }
-  .card-preview-inner { width: 100%; transform: none; }
+  .card-preview-inner { zoom: 1; }
 }
 
 /* Textarea styling */
