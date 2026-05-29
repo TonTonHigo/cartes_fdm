@@ -303,7 +303,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
         Faites défiler et choisissez votre carte
       </h2>
       <p className="flex-shrink-0 text-xs text-gray-600 mb-2 font-sans">Tapez pour personnaliser</p>
-      <div className="flex-1 min-h-0 overflow-y-auto px-2 pr-4">
+      <div className="flex-1 min-h-0 overflow-y-auto px-2 pr-2 md:[scrollbar-width:none] md:[&::-webkit-scrollbar]:hidden">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {templates.map(t => (
           <div key={t.id} className="pb-1">

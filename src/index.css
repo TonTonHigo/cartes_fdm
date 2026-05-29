@@ -184,22 +184,30 @@
   100% { transform: translateY(-100vh) translateX(var(--dx2, -10px)) scaleX(2.5); opacity: 0; }
 }
 
-/* Animated yellow border for phase 1 cards */
-@property --border-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
+/* Animated border for phase 1 cards — compatible Safari */
 @keyframes borderSpin {
-  to { --border-angle: 360deg; }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 .card-border-spin {
   border-radius: 16px;
   padding: 2px;
-  background: conic-gradient(from var(--border-angle), #1f2937 0%, transparent 30%, transparent 70%, #1f2937 100%);
+  overflow: hidden;
+}
+.card-border-spin::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(#1f2937 0deg, transparent 60deg, transparent 300deg, #1f2937 360deg);
   animation: borderSpin 2.5s linear infinite;
+  z-index: 0;
 }
 .card-border-spin > button {
+  position: relative;
+  z-index: 1;
   border-radius: 14px !important;
 }
 
