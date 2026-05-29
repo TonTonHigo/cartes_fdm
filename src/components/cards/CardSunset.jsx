@@ -91,7 +91,7 @@ export default function CardSunset({ data, fullscreen = false }) {
         </div>
 
         <p className={`${smallText} uppercase tracking-widest text-[#4a1d96]`}>
-          Fête des Mères 2026
+          Fête des Mères
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#3b0764]`}>

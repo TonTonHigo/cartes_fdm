@@ -87,7 +87,7 @@ export default function CardCreole({ data, fullscreen = false }) {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: '1px solid rgba(240,180,20,0.5)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${smallText} uppercase tracking-[0.3em] text-[#991b1b]`}>Fête des Mères 2026</p>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-[#991b1b]`}>Fête des Mères</p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#7f1d1d]`}
           style={{}}>

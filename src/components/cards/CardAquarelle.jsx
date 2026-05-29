@@ -79,7 +79,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         <div className="flex justify-center">
           <div className="px-4 py-1 rounded-full text-white"
             style={{ background: safeAccentOnWhite, fontSize: fullscreen ? '0.875rem' : '0.65rem' }}>
-            Fête des Mères 2026
+            Fête des Mères
           </div>
         </div>
 

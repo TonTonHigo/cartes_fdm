@@ -61,7 +61,7 @@ export default function CardLontan({ data, fullscreen = false }) {
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <p className={`${smallText} uppercase tracking-[0.4em] text-[#78350f]`}>
-          Fête des Mères · 2026
+          Fête des Mères
         </p>
 
         <div style={{ fontSize: fullscreen ? '1.8rem' : '1rem' }}>🌿</div>

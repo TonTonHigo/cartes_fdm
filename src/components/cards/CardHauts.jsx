@@ -85,7 +85,7 @@ export default function CardHauts({ data, fullscreen = false }) {
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <p className={`${smallText} uppercase tracking-[0.3em]`} style={{ color: '#B8CCB8', opacity: 0.8, textShadow: sh }}>
-          Fête des Mères 2026
+          Fête des Mères
         </p>
 
         <div style={{ fontSize: fullscreen ? '1.8rem' : '1rem' }}>🏔️</div>

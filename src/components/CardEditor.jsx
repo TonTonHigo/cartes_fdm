@@ -48,7 +48,7 @@ const TEMPLATES = [
   },
   {
     id: 'nature',
-    name: 'Maman Zoreil',
+    name: 'Maman Bronzette',
     desc: 'Jungle & Cascade',
     preview: 'linear-gradient(160deg, #071E0A, #1A7A3A, #0C5E6E)',
     emoji: '🌊',
@@ -190,7 +190,7 @@ export default function CardEditor() {
         <HeartBackground />
         <div className="flex-1 min-h-0 flex flex-col w-full" style={{ position: 'relative', zIndex: 1 }}>
           <div className="flex-shrink-0 text-center mb-2">
-            <h1 className="text-xl font-serif-display font-bold text-rose-700 italic">Carte Fête des Mères 2026</h1>
+            <h1 className="text-xl font-serif-display font-bold text-rose-700 italic">Carte Fête des Mères</h1>
           </div>
           <div className="flex-shrink-0"><StepIndicator steps={STEPS} current={step} /></div>
           <div className="flex-1 min-h-0 mt-2">
@@ -232,7 +232,7 @@ export default function CardEditor() {
         <HeartBackground />
         <div className="mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-3xl" style={{ position: 'relative', zIndex: 1 }}>
           <div className="text-center mb-3">
-            <h1 className="text-2xl font-serif-display font-bold text-rose-700 italic mb-1">Carte Fête des Mères 2026</h1>
+            <h1 className="text-2xl font-serif-display font-bold text-rose-700 italic mb-1">Carte Fête des Mères</h1>
           </div>
           <StepIndicator steps={STEPS} current={step} />
           <div className="mt-3 bg-white rounded-2xl shadow-xl p-4 border border-rose-100">
@@ -320,9 +320,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
                 }`}
                 style={{ height: '260px' }}
               >
-                <div style={{ zoom: 0.88 }}>
-                  <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
-                </div>
+                <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
                 <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none rounded-b-2xl"
                   style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))' }} />
               </button>

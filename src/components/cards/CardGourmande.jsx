@@ -100,7 +100,7 @@ export default function CardGourmande({ data, fullscreen = false }) {
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <p className={`${smallText} uppercase tracking-[0.3em] text-[#FEF3D0]`}>
-          Fête des Mères 2026
+          Fête des Mères
         </p>
 
         <div style={{ fontSize: fullscreen ? '2rem' : '1.1rem' }}>🍲</div>

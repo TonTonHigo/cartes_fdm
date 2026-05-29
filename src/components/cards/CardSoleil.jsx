@@ -96,7 +96,7 @@ export default function CardSoleil({ data, fullscreen = false }) {
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <p className={`${smallText} uppercase tracking-[0.3em] text-[#075985]`}>
-          Fête des Mères 2026
+          Fête des Mères
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#0c4a6e]`}

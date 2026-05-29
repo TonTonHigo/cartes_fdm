@@ -75,7 +75,7 @@ export default function CardRoyal({ data, fullscreen = false }) {
         <div className="flex justify-center">{ornament}</div>
 
         <p className={`${smallText} uppercase tracking-[0.3em] text-[#553c9a]`}>
-          Fête des Mères · 2026
+          Fête des Mères
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#44337a]`}

@@ -92,14 +92,14 @@ export default function CardNature({ data, fullscreen = false }) {
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <p className={`${smallText} uppercase tracking-[0.3em] text-[#166534]`}>
-          Fête des Mères 2026
+          Fête des Mères
         </p>
 
         <div style={{ fontSize: fullscreen ? '2rem' : '1.2rem' }}>🌊</div>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#14532d]`}
           style={{}}>
-          Maman Zoreil,<br />{recipientName || 'Maman'}
+          Maman Bronzette,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="flex items-center gap-2 justify-center">

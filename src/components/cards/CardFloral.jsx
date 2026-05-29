@@ -73,7 +73,7 @@ export default function CardFloral({ data, fullscreen = false }) {
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <p className={`${scale} font-sans uppercase tracking-widest`} style={{ color: safeAccent, textShadow: sh }}>
-          Fête des Mères 2026
+          Fête des Mères
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#9d174d', textShadow: sh }}>
