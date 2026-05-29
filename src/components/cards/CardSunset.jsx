@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardSunset({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccentOnDark = ensureContrast(accentColor, '#2d1b69')
-  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
+  const sh = ''
   const starsRef = useRef(null)
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function CardSunset({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(10,5,30,0.5)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(10,5,30,0)' }} />
       <div ref={starsRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Moon */}
@@ -90,12 +90,12 @@ export default function CardSunset({ data, fullscreen = false }) {
           ))}
         </div>
 
-        <p className={`${smallText} uppercase tracking-widest text-amber-200 opacity-80`} style={{ textShadow: sh }}>
+        <p className={`${smallText} uppercase tracking-widest text-[#4a1d96]`}>
           Fête des Mères 2026
         </p>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight text-white`} style={{ textShadow: sh }}>
-          {recipientName || 'Maman'},<br />mon étoile
+        <h1 className={`${titleSize} italic font-bold leading-tight text-[#3b0764]`}>
+          Maman Étoile,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="py-1">
@@ -107,18 +107,18 @@ export default function CardSunset({ data, fullscreen = false }) {
         </div>
 
         <p
-          className={`${msgSize} leading-relaxed text-rose-100`}
-          style={{ whiteSpace: 'pre-wrap', textShadow: sh }}
+          className={`${msgSize} leading-loose text-[#3b0764]`}
+          style={{ whiteSpace: 'pre-wrap' }}
         >
-          {message || 'Je t\'aime de tout mon cœur.'}
+          {message || 'Tu es mon étoile,\ncelle qui guide mes pas dans la nuit.\nJe t\'aime infiniment.'}
         </p>
 
         <div className="pt-2">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccentOnDark, textShadow: sh }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#3b0764' }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-rose-200 mt-1`} style={{ textShadow: sh }}>— {senderName}</p>
+            <p className={`${smallText} text-[#5b21b6] mt-1`}>— {senderName}</p>
           )}
         </div>
       </div>

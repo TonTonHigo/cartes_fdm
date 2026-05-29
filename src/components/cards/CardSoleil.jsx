@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardSoleil({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccent = ensureContrast(accentColor, '#0284C7')
-  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
+  const sh = ''
   const sparklesRef = useRef(null)
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function CardSoleil({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(5,35,70,0.45)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(5,35,70,0)' }} />
       <div ref={sparklesRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Sun */}
@@ -95,12 +95,12 @@ export default function CardSoleil({ data, fullscreen = false }) {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: '1px solid rgba(253,230,138,0.3)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${smallText} uppercase tracking-[0.3em] text-sky-100`} style={{ opacity: 0.9, textShadow: sh }}>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-[#075985]`}>
           Fête des Mères 2026
         </p>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight text-white`}
-          style={{ textShadow: sh }}>
+        <h1 className={`${titleSize} italic font-bold leading-tight text-[#0c4a6e]`}
+          style={{}}>
           {recipientName || 'Maman'},<br />mon soleil
         </h1>
 
@@ -110,17 +110,17 @@ export default function CardSoleil({ data, fullscreen = false }) {
           <div className="h-px flex-1 opacity-40" style={{ background: 'linear-gradient(to left, transparent, #FDE68A)' }} />
         </div>
 
-        <p className={`${msgSize} leading-relaxed text-sky-50`}
-          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Je t\'aime de tout mon cœur.'}
+        <p className={`${msgSize} leading-loose text-[#0c4a6e]`}
+          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
+          {message || 'Tu es mon soleil,\ntu réchauffes mon cœur chaque jour.\nJe t\'aime.'}
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccent, textShadow: sh }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#0c4a6e' }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-sky-100`} style={{ fontFamily: '"Lato", sans-serif', textShadow: sh }}>— {senderName}</p>
+            <p className={`${smallText} text-[#0369a1]`} style={{ fontFamily: '"Lato", sans-serif' }}>— {senderName}</p>
           )}
         </div>
       </div>

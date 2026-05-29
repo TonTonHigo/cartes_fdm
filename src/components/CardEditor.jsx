@@ -6,28 +6,28 @@ import { sendCardByEmail, isEmailJsConfigured } from '../utils/emailService'
 const TEMPLATES = [
   {
     id: 'floral',
-    name: 'Jardin Fleuri',
+    name: 'Maman Fleurie',
     desc: 'Rose & Pétales',
     preview: 'linear-gradient(135deg, #fce7f3, #fdf2f8)',
     emoji: '🌸',
   },
   {
     id: 'sunset',
-    name: 'Coucher de Soleil',
+    name: 'Maman Étoile',
     desc: 'Nuit Étoilée',
     preview: 'linear-gradient(180deg, #1a1035 0%, #7c3aed 50%, #fbbf24 100%)',
     emoji: '🌙',
   },
   {
     id: 'aquarelle',
-    name: 'Aquarelle',
+    name: 'Maman Stylée',
     desc: 'Pastels & Douceur',
     preview: 'linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
     emoji: '🎨',
   },
   {
     id: 'royal',
-    name: 'Royale',
+    name: 'Maman Sportive',
     desc: 'Or & Mystère',
     preview: 'linear-gradient(145deg, #1e0a3c, #2d1557)',
     emoji: '👑',
@@ -48,7 +48,7 @@ const TEMPLATES = [
   },
   {
     id: 'nature',
-    name: 'Maman Nature',
+    name: 'Maman Zoreil',
     desc: 'Jungle & Cascade',
     preview: 'linear-gradient(160deg, #071E0A, #1A7A3A, #0C5E6E)',
     emoji: '🌊',
@@ -80,7 +80,7 @@ const DEFAULT_DATA = {
   template: 'floral',
   recipientName: 'Maman',
   senderName: '',
-  message: 'Tu es la femme la plus merveilleuse du monde.\nChaque jour, je suis reconnaissant(e) de t\'avoir dans ma vie.\nJe t\'aime infiniment.',
+  message: '',
   signature: 'Avec tout mon amour',
   accentColor: '#f43f5e',
 }
@@ -183,92 +183,85 @@ export default function CardEditor() {
   if (sent) return <SuccessScreen cardUrl={cardUrl} recipientName={data.recipientName} onReset={() => { setSent(false); setStep(0); setData(DEFAULT_DATA); setCardUrl(null) }} />
 
   return (
-    <div className="h-dvh flex flex-col overflow-hidden bg-gradient-to-br from-rose-50 via-white to-purple-50 px-4 pt-4 pb-[72px]">
-      <CornerDecorations />
-      <HeartBackground />
-
-      <div className="flex-1 min-h-0 flex flex-col mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-3xl" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Header */}
-        <div className="flex-shrink-0 text-center mb-3">
-          <h1 className="text-2xl font-serif-display font-bold text-rose-700 italic mb-1">
-            Carte Fête des Mères 2026
-          </h1>
-        </div>
-
-        {/* Step indicator */}
-        <div className="flex-shrink-0">
-          <StepIndicator steps={STEPS} current={step} />
-        </div>
-
-        {/* Editor panel */}
-        <div className="flex-1 min-h-0 mt-3">
-          <div className="h-full flex flex-col bg-white rounded-2xl shadow-xl p-4 border border-rose-100">
-
-            {step === 0 && (
-              <div className="flex-1 min-h-0">
-                <StepTemplates
-                  templates={TEMPLATES}
-                  selected={data.template}
-                  onSelect={t => update('template', t)}
-                  onConfirm={() => setStep(1)}
-                  data={data}
-                />
-              </div>
-            )}
-
-            {step === 1 && (
-              <div className="flex-1 min-h-0 flex flex-col lg:flex-row lg:gap-4">
-                <div className="flex-shrink-0 lg:w-2/5 overflow-hidden">
-                  <div className="card-preview-container rounded-xl overflow-hidden shadow-md mb-3 lg:mb-0">
-                    <div className="card-preview-inner">
-                      <CardRenderer data={data} fullscreen={false} />
-                    </div>
-                  </div>
+    <>
+      {/* ── MOBILE : 1 écran fixe, pas de scroll ── */}
+      <div className="md:hidden h-dvh flex flex-col overflow-hidden bg-gradient-to-br from-rose-50 via-white to-purple-50 px-4 pt-4 pb-[72px]">
+        <CornerDecorations />
+        <HeartBackground />
+        <div className="flex-1 min-h-0 flex flex-col w-full" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="flex-shrink-0 text-center mb-2">
+            <h1 className="text-xl font-serif-display font-bold text-rose-700 italic">Carte Fête des Mères 2026</h1>
+          </div>
+          <div className="flex-shrink-0"><StepIndicator steps={STEPS} current={step} /></div>
+          <div className="flex-1 min-h-0 mt-2">
+            <div className="h-full flex flex-col bg-white rounded-2xl shadow-xl p-4 border border-rose-100">
+              {step === 0 && (
+                <div className="flex-1 min-h-0">
+                  <StepTemplates templates={TEMPLATES} selected={data.template} onSelect={t => update('template', t)} onConfirm={() => setStep(1)} data={data} />
                 </div>
-                <div className="flex-1 min-h-0 overflow-y-auto">
+              )}
+              {step === 1 && (
+                <div className="flex-1 min-h-0 flex flex-col gap-3 overflow-y-auto">
+                  <div className="card-preview-container rounded-xl overflow-hidden shadow-md flex-shrink-0">
+                    <div className="card-preview-inner"><CardRenderer data={data} fullscreen={false} /></div>
+                  </div>
                   <StepCustomize data={data} update={update} colors={ACCENT_COLORS} />
                 </div>
-              </div>
-            )}
-
-            {step === 2 && (
-              <div className="flex-1 min-h-0 flex flex-col lg:flex-row lg:gap-4">
-                <div className="flex-shrink-0 lg:w-2/5 overflow-hidden">
-                  <div className="card-preview-container rounded-xl overflow-hidden shadow-md mb-3 lg:mb-0">
-                    <div className="card-preview-inner">
-                      <CardRenderer data={data} fullscreen={false} />
-                    </div>
+              )}
+              {step === 2 && (
+                <div className="flex-1 min-h-0 flex flex-col gap-3 overflow-y-auto">
+                  <div className="card-preview-container rounded-xl overflow-hidden shadow-md flex-shrink-0">
+                    <div className="card-preview-inner"><CardRenderer data={data} fullscreen={false} /></div>
                   </div>
+                  <StepSend data={data} cardUrl={cardUrl} email={email} setEmail={setEmail} onSend={handleSend} onCopy={copyUrl} copied={copied} sending={sending} error={error} emailjsConfigured={isEmailJsConfigured()} />
                 </div>
-                <div className="flex-1 min-h-0 overflow-y-auto pr-3">
-                  <StepSend
-                    data={data}
-                    cardUrl={cardUrl}
-                    email={email}
-                    setEmail={setEmail}
-                    onSend={handleSend}
-                    onCopy={copyUrl}
-                    copied={copied}
-                    sending={sending}
-                    error={error}
-                    emailjsConfigured={isEmailJsConfigured()}
-                  />
-                </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Barre de navigation fixée en bas */}
-      {step > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 py-3 z-40">
-          <div className="mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-3xl px-4">
+        {step > 0 && (
+          <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-rose-100 py-3 z-40 px-4">
             {navButtons}
           </div>
+        )}
+      </div>
+
+      {/* ── DESKTOP : scroll normal ── */}
+      <div className="hidden md:block min-h-screen bg-gradient-to-br from-rose-50 via-white to-purple-50 px-4 pt-4 pb-8">
+        <CornerDecorations />
+        <HeartBackground />
+        <div className="mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-3xl" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="text-center mb-3">
+            <h1 className="text-2xl font-serif-display font-bold text-rose-700 italic mb-1">Carte Fête des Mères 2026</h1>
+          </div>
+          <StepIndicator steps={STEPS} current={step} />
+          <div className="mt-3 bg-white rounded-2xl shadow-xl p-4 border border-rose-100">
+            {step === 0 && (
+              <StepTemplates templates={TEMPLATES} selected={data.template} onSelect={t => update('template', t)} onConfirm={() => setStep(1)} data={data} />
+            )}
+            {step === 1 && (
+              <div className="flex flex-col gap-4">
+                <div className="card-preview-container rounded-xl overflow-hidden shadow-md">
+                  <div className="card-preview-inner"><CardRenderer data={data} fullscreen={false} /></div>
+                </div>
+                <StepCustomize data={data} update={update} colors={ACCENT_COLORS} />
+              </div>
+            )}
+            {step === 2 && (
+              <div className="flex flex-col gap-4">
+                <div className="card-preview-container rounded-xl overflow-hidden shadow-md">
+                  <div className="card-preview-inner"><CardRenderer data={data} fullscreen={false} /></div>
+                </div>
+                <StepSend data={data} cardUrl={cardUrl} email={email} setEmail={setEmail} onSend={handleSend} onCopy={copyUrl} copied={copied} sending={sending} error={error} emailjsConfigured={isEmailJsConfigured()} />
+              </div>
+            )}
+          </div>
+          {step > 0 && (
+            <div className="mt-4">{navButtons}</div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   )
 }
 
@@ -328,7 +321,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
                 style={{ height: '246px' }}
               >
                 <div style={{ zoom: 0.88 }}>
-                  <CardRenderer data={{ ...data, template: t.id }} fullscreen={false} />
+                  <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
                 </div>
               </button>
               {/* Indicateur de clic — flèche desktop, main tablette */}
@@ -353,7 +346,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
 
 function StepCustomize({ data, update, colors }) {
   return (
-    <div className="h-full space-y-3 overflow-y-auto pr-3">
+    <div className="space-y-3">
 
       <Field label="Pour (prénom ou surnom)" required>
         <input
@@ -398,31 +391,6 @@ function StepCustomize({ data, update, colors }) {
         />
       </Field>
 
-      <Field label="Couleur accent">
-        <div className="flex gap-2 flex-wrap p-1">
-          {colors.map(c => (
-            <button
-              key={c.value}
-              title={c.label}
-              onClick={() => update('accentColor', c.value)}
-              className="w-8 h-8 rounded-full transition-all duration-150 hover:scale-110"
-              style={{
-                background: c.value,
-                boxShadow: data.accentColor === c.value ? 'inset 0 0 0 2px white, inset 0 0 0 4px rgba(0,0,0,0.35)' : undefined,
-              }}
-            />
-          ))}
-          <label className="w-8 h-8 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-rose-400 transition-all" title="Couleur personnalisée">
-            <span className="text-gray-600 text-xs">+</span>
-            <input
-              type="color"
-              value={data.accentColor}
-              onChange={e => update('accentColor', e.target.value)}
-              className="sr-only"
-            />
-          </label>
-        </div>
-      </Field>
     </div>
   )
 }

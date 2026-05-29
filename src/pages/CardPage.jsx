@@ -12,7 +12,7 @@ export default function CardPage() {
 
   useEffect(() => {
     const decoded = decodeCard(id)
-    if (decoded && decoded.template && decoded.message) {
+    if (decoded && decoded.template) {
       setData(decoded)
       setTimeout(() => setShowActions(true), 1200)
     } else {

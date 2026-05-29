@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardAquarelle({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccentOnWhite = ensureContrast(accentColor, '#ffffff')
-  const sh = '0 1px 6px rgba(0,0,0,0.4), 0 2px 10px rgba(0,0,0,0.25)'
+  const sh = ''
   const bubblesRef = useRef(null)
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(255,255,255,0.5)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(255,255,255,0)' }} />
       <div ref={bubblesRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
 
@@ -84,7 +84,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         </div>
 
         <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#581c87', textShadow: sh }}>
-          À {recipientName || 'Maman'}<br />avec amour
+          Maman Stylée,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="flex items-center gap-3 justify-center py-1">
@@ -93,9 +93,9 @@ export default function CardAquarelle({ data, fullscreen = false }) {
           ))}
         </div>
 
-        <p className={`${msgSize} leading-relaxed`}
+        <p className={`${msgSize} leading-loose`}
           style={{ color: '#374151', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Je t\'aime de tout mon cœur.'}
+          {message || 'Avec toi, la vie est une toile\nde couleurs et de douceur.\nJe t\'aime.'}
         </p>
 
         <div className="pt-2 space-y-1">

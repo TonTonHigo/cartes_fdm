@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardGourmande({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccent = ensureContrast(accentColor, '#6B2800')
-  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
+  const sh = ''
   const steamRef = useRef(null)
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function CardGourmande({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(25,8,0,0.5)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(25,8,0,0)' }} />
       <div ref={steamRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Spice dots */}
@@ -99,14 +99,14 @@ export default function CardGourmande({ data, fullscreen = false }) {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: '1px solid rgba(245,158,11,0.4)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${smallText} uppercase tracking-[0.3em] text-amber-300`} style={{ opacity: 0.9, textShadow: sh }}>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-[#FEF3D0]`}>
           Fête des Mères 2026
         </p>
 
         <div style={{ fontSize: fullscreen ? '2rem' : '1.1rem' }}>🍲</div>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight text-amber-100`}
-          style={{ textShadow: sh }}>
+        <h1 className={`${titleSize} italic font-bold leading-tight text-[#FFF8EC]`}
+          style={{}}>
           Maman Gourmande,<br />{recipientName || 'Maman'}
         </h1>
 
@@ -116,17 +116,17 @@ export default function CardGourmande({ data, fullscreen = false }) {
           <div className="h-px flex-1 opacity-50" style={{ background: 'linear-gradient(to left, transparent, #F59E0B)' }} />
         </div>
 
-        <p className={`${msgSize} leading-relaxed text-orange-100`}
-          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Je t\'aime de tout mon cœur.'}
+        <p className={`${msgSize} leading-loose text-[#FFF8EC]`}
+          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
+          {message || 'Avec toi, chaque moment\nest une recette de bonheur\net d\'amour partagé.'}
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccent, textShadow: sh }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#FFF8EC' }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-amber-200`} style={{ fontFamily: '"Lato", sans-serif', textShadow: sh }}>— {senderName}</p>
+            <p className={`${smallText} text-[#FEF3D0]`} style={{ fontFamily: '"Lato", sans-serif' }}>— {senderName}</p>
           )}
         </div>
       </div>

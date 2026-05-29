@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardHauts({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccent = ensureContrast(accentColor, '#1A3A22')
-  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
+  const sh = ''
   const flakesRef = useRef(null)
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function CardHauts({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(8,15,10,0.5)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(8,15,10,0)' }} />
       <div ref={flakesRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
       {/* Mountain silhouette */}
@@ -101,9 +101,9 @@ export default function CardHauts({ data, fullscreen = false }) {
           <div className="h-px flex-1 opacity-40" style={{ background: 'linear-gradient(to left, transparent, #B8CCB8)' }} />
         </div>
 
-        <p className={`${msgSize} leading-relaxed`}
+        <p className={`${msgSize} leading-loose`}
           style={{ color: '#D4E4D4', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Je t\'aime de tout mon cœur.'}
+          {message || 'Comme les sommets des Hauts,\nton amour est grand, solide\net majestueux.'}
         </p>
 
         <div className="pt-2 space-y-1">

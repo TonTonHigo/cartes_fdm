@@ -44,7 +44,7 @@ export default function CardFloral({ data, fullscreen = false }) {
   }, [accentColor])
 
   const safeAccent = ensureContrast(accentColor, '#fce7f3')
-  const sh = '0 1px 6px rgba(255,255,255,0.9), 0 2px 12px rgba(255,255,255,0.7)'
+  const sh = ''
   const scale = fullscreen ? 'text-base' : 'text-xs'
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -61,18 +61,9 @@ export default function CardFloral({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(255,240,246,0.55)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(255,240,246,0)' }} />
       <div ref={petalsRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
-      {/* Corner flowers */}
-      {['top-2 left-2 rotate-0', 'top-2 right-2 rotate-90', 'bottom-2 left-2 -rotate-90', 'bottom-2 right-2 rotate-180'].map((pos, i) => (
-        <div
-          key={i}
-          className={`absolute ${pos} opacity-70`}
-          style={{ transform: `${pos.includes('rotate') ? '' : ''}` }}
-          dangerouslySetInnerHTML={{ __html: FLOWER_SVG(accentColor) }}
-        />
-      ))}
 
       {/* Border decoration */}
       <div
@@ -86,7 +77,7 @@ export default function CardFloral({ data, fullscreen = false }) {
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#9d174d', textShadow: sh }}>
-          Pour toi,<br />{recipientName || 'Maman'}
+          Maman Fleurie,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="py-2">
@@ -98,10 +89,10 @@ export default function CardFloral({ data, fullscreen = false }) {
         </div>
 
         <p
-          className={`${msgSize} leading-relaxed font-sans`}
+          className={`${msgSize} leading-loose font-sans`}
           style={{ color: '#4a1942', whiteSpace: 'pre-wrap', textShadow: sh }}
         >
-          {message || 'Je t\'aime de tout mon cœur.'}
+          {message || 'Comme les fleurs qui s\'épanouissent,\ntu embellis chaque jour de ma vie.\nJe t\'aime.'}
         </p>
 
         <div className="pt-2">

@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardRoyal({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccentOnDark = ensureContrast(accentColor, '#1e0a3c')
-  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
+  const sh = ''
   const particlesRef = useRef(null)
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function CardRoyal({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(8,2,25,0.6)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(8,2,25,0)' }} />
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
       {/* Gold border */}
@@ -70,46 +70,37 @@ export default function CardRoyal({ data, fullscreen = false }) {
         style={{ border: '0.5px solid rgba(251,191,36,0.15)' }}
       />
 
-      {/* Corner ornaments */}
-      {['top-4 left-4', 'top-4 right-4 rotate-90', 'bottom-4 left-4 -rotate-90', 'bottom-4 right-4 rotate-180'].map((pos, i) => (
-        <div key={i} className={`absolute ${pos} opacity-60`}>
-          <svg width={fullscreen ? 28 : 16} height={fullscreen ? 28 : 16} viewBox="0 0 28 28">
-            <path d="M2,2 L2,12 M2,2 L12,2" stroke={safeAccentOnDark} strokeWidth="1.5" fill="none" />
-            <circle cx="2" cy="2" r="2" fill={safeAccentOnDark} />
-          </svg>
-        </div>
-      ))}
 
       <div className="relative z-10 space-y-4 max-w-lg">
         <div className="flex justify-center">{ornament}</div>
 
-        <p className={`${smallText} uppercase tracking-[0.3em] text-amber-400`} style={{ textShadow: sh }}>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-[#553c9a]`}>
           Fête des Mères · 2026
         </p>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight text-amber-200`}
-          style={{ textShadow: `0 2px 20px rgba(251,191,36,0.4), ${sh}` }}>
-          Pour {recipientName || 'Maman'},<br />la plus belle
+        <h1 className={`${titleSize} italic font-bold leading-tight text-[#44337a]`}
+          style={{}}>
+          Maman Sportive,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="flex justify-center">{ornament}</div>
 
         <p
-          className={`${msgSize} leading-relaxed text-purple-100`}
-          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}
+          className={`${msgSize} leading-loose text-[#44337a]`}
+          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}
         >
-          {message || 'Je t\'aime de tout mon cœur.'}
+          {message || 'Tu es la championne de ma vie,\nforte, belle et inspirante.\nJe t\'aime de tout mon cœur.'}
         </p>
 
         <div className="pt-3 space-y-1">
           <p
             className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`}
-            style={{ color: safeAccentOnDark, textShadow: `0 0 20px ${safeAccentOnDark}80, ${sh}` }}
+            style={{ color: '#44337a' }}
           >
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} opacity-80`} style={{ color: safeAccentOnDark, textShadow: sh }}>— {senderName}</p>
+            <p className={`${smallText} text-[#6b46c1]`}>— {senderName}</p>
           )}
         </div>
       </div>

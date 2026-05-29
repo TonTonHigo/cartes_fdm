@@ -4,7 +4,7 @@ import { ensureContrast } from '../../utils/colorUtils'
 export default function CardCreole({ data, fullscreen = false }) {
   const { senderName, recipientName, message, signature, accentColor } = data
   const safeAccent = ensureContrast(accentColor, '#B83A1A')
-  const sh = '0 2px 8px rgba(0,0,0,0.9), 0 1px 20px rgba(0,0,0,0.7)'
+  const sh = ''
   const petalsRef = useRef(null)
 
   useEffect(() => {
@@ -69,14 +69,9 @@ export default function CardCreole({ data, fullscreen = false }) {
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(40,8,4,0.5)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(40,8,4,0)' }} />
       <div ref={petalsRef} className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} />
 
-      {/* Corner hibiscus */}
-      <div className="absolute top-2 left-2 opacity-70">{hibiscus(sz)}</div>
-      <div className="absolute top-2 right-2 opacity-70" style={{ transform: 'scaleX(-1)' }}>{hibiscus(sz)}</div>
-      <div className="absolute bottom-2 left-2 opacity-70" style={{ transform: 'scaleY(-1)' }}>{hibiscus(sz)}</div>
-      <div className="absolute bottom-2 right-2 opacity-70" style={{ transform: 'scale(-1)' }}>{hibiscus(sz)}</div>
 
       {/* Dotted pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -92,10 +87,10 @@ export default function CardCreole({ data, fullscreen = false }) {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: '1px solid rgba(240,180,20,0.5)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${smallText} uppercase tracking-[0.3em] text-amber-300`} style={{ textShadow: sh }}>Fête des Mères 2026</p>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-[#991b1b]`}>Fête des Mères 2026</p>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight text-amber-100`}
-          style={{ textShadow: sh }}>
+        <h1 className={`${titleSize} italic font-bold leading-tight text-[#7f1d1d]`}
+          style={{}}>
           Amour Créole,<br />{recipientName || 'Maman'}
         </h1>
 
@@ -105,17 +100,17 @@ export default function CardCreole({ data, fullscreen = false }) {
           <div className="h-px flex-1 opacity-50" style={{ background: 'linear-gradient(to left, transparent, #F0B414)' }} />
         </div>
 
-        <p className={`${msgSize} leading-relaxed text-orange-100`}
-          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Je t\'aime de tout mon cœur.'}
+        <p className={`${msgSize} leading-loose text-[#7f1d1d]`}
+          style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
+          {message || 'Dans ta chaleur créole,\nj\'ai appris l\'amour et la joie de vivre.\nJe t\'aime, Maman.'}
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: safeAccent, textShadow: sh }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#7f1d1d' }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-orange-200`} style={{ fontFamily: '"Lato", sans-serif', textShadow: sh }}>— {senderName}</p>
+            <p className={`${smallText} text-[#b91c1c]`} style={{ fontFamily: '"Lato", sans-serif' }}>— {senderName}</p>
           )}
         </div>
       </div>
