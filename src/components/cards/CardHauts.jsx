@@ -84,7 +84,7 @@ export default function CardHauts({ data, fullscreen = false }) {
 
         <h1 className={`${titleSize} italic font-bold leading-tight`}
           style={{ color: '#E8F0E8', textShadow: `0 2px 12px rgba(0,0,0,0.6), ${sh}` }}>
-          Des Hauts pour toi,<br />{recipientName || 'Maman'}
+          Maman Étoile,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="flex items-center gap-2 justify-center">
@@ -95,7 +95,7 @@ export default function CardHauts({ data, fullscreen = false }) {
 
         <p className={`${msgSize} leading-loose`}
           style={{ color: '#D4E4D4', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Comme les sommets des Hauts,\nton amour est grand, solide\net majestueux.'}
+          {message || 'Tu es mon étoile,\ncelle qui guide mes pas\ndans la nuit.'}
         </p>
 
         <div className="pt-2 space-y-1">

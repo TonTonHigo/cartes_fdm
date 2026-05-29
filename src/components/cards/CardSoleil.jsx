@@ -10,27 +10,23 @@ export default function CardSoleil({ data, fullscreen = false }) {
   useEffect(() => {
     if (!sparklesRef.current) return
     const container = sparklesRef.current
-    const rays = []
+    const stars = []
     for (let i = 0; i < 20; i++) {
       const el = document.createElement('div')
-      el.className = 'ray'
-      const size = Math.random() * 8 + 3
-      const colors = ['#FDE68A', '#FCD34D', '#FBBF24', '#ffffff']
-      const color = colors[Math.floor(Math.random() * colors.length)]
+      el.className = 'star'
+      const size = Math.random() * 4 + 2
       el.style.cssText = `
         width:${size}px; height:${size}px;
-        background:${color};
-        bottom:${Math.random() * 30}%;
+        background: white;
+        top:${Math.random() * 40}%;
         left:${Math.random() * 100}%;
-        animation-duration:${Math.random() * 3 + 2}s;
-        animation-delay:${Math.random() * 7}s;
-        box-shadow:0 0 ${size * 3}px ${color};
-        filter:blur(0.5px);
+        animation-duration:${Math.random() * 2 + 1.5}s;
+        animation-delay:${Math.random() * 3}s;
       `
       container.appendChild(el)
-      rays.push(el)
+      stars.push(el)
     }
-    return () => rays.forEach(r => r.remove())
+    return () => stars.forEach(s => s.remove())
   }, [fullscreen])
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'
@@ -101,7 +97,7 @@ export default function CardSoleil({ data, fullscreen = false }) {
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#0c4a6e]`}
           style={{}}>
-          {recipientName || 'Maman'},<br />mon soleil
+          Maman Nature,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="flex items-center gap-2 justify-center">
@@ -112,7 +108,7 @@ export default function CardSoleil({ data, fullscreen = false }) {
 
         <p className={`${msgSize} leading-loose text-[#0c4a6e]`}
           style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
-          {message || 'Tu es mon soleil,\ntu réchauffes mon cœur chaque jour.\nJe t\'aime.'}
+          {message || 'Au cœur de la nature,\nton amour est ma force\net ma lumière.'}
         </p>
 
         <div className="pt-2 space-y-1">

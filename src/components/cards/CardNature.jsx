@@ -110,7 +110,7 @@ export default function CardNature({ data, fullscreen = false }) {
 
         <p className={`${msgSize} leading-loose text-[#14532d]`}
           style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
-          {message || 'Comme la nature réunionnaise,\ntu es ma source de vie,\nde fraîcheur et d\'amour.'}
+          {message || 'Sous le soleil réunionnais,\ntu brilles comme nulle autre.\nJe t\'aime, Maman.'}
         </p>
 
         <div className="pt-2 space-y-1">

@@ -49,7 +49,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
     <div
       className={`relative overflow-hidden ${fullscreen ? '' : 'rounded-2xl'} ${pad} flex flex-col items-center justify-center text-center`}
       style={{
-        backgroundImage: 'url(/images/cartes/dentelle.avif), linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
+        backgroundImage: 'url(/images/cartes/fruit.avif), linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: fullscreen ? '100vh' : '280px',
@@ -84,7 +84,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
         </div>
 
         <h1 className={`${titleSize} italic font-bold leading-tight`} style={{ color: '#581c87', textShadow: sh }}>
-          Maman Stylée,<br />{recipientName || 'Maman'}
+          Maman Fruitée,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="flex items-center gap-3 justify-center py-1">
@@ -95,7 +95,7 @@ export default function CardAquarelle({ data, fullscreen = false }) {
 
         <p className={`${msgSize} leading-loose`}
           style={{ color: '#374151', whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif', textShadow: sh }}>
-          {message || 'Avec toi, la vie est une toile\nde couleurs et de douceur.\nJe t\'aime.'}
+          {message || 'Fraîche comme un fruit tropical,\ntu es la douceur de ma vie.\nJe t\'aime.'}
         </p>
 
         <div className="pt-2 space-y-1">

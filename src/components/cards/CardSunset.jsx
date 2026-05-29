@@ -10,24 +10,27 @@ export default function CardSunset({ data, fullscreen = false }) {
   useEffect(() => {
     if (!starsRef.current) return
     const container = starsRef.current
-    const stars = []
-
+    const sparks = []
     for (let i = 0; i < 20; i++) {
       const el = document.createElement('div')
-      el.className = 'star'
-      const size = Math.random() * 4 + 2
+      el.className = 'ray'
+      const size = Math.random() * 8 + 3
+      const colors = ['#FDE68A', '#FCD34D', '#FBBF24', '#ffffff']
+      const color = colors[Math.floor(Math.random() * colors.length)]
       el.style.cssText = `
         width:${size}px; height:${size}px;
-        background: white;
-        top:${Math.random() * 40}%;
+        background:${color};
+        bottom:${Math.random() * 30}%;
         left:${Math.random() * 100}%;
-        animation-duration:${Math.random() * 2 + 1.5}s;
-        animation-delay:${Math.random() * 3}s;
+        animation-duration:${Math.random() * 3 + 2}s;
+        animation-delay:${Math.random() * 7}s;
+        box-shadow:0 0 ${size * 3}px ${color};
+        filter:blur(0.5px);
       `
       container.appendChild(el)
-      stars.push(el)
+      sparks.push(el)
     }
-    return () => stars.forEach(s => s.remove())
+    return () => sparks.forEach(s => s.remove())
   }, [fullscreen])
 
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
@@ -56,7 +59,7 @@ export default function CardSunset({ data, fullscreen = false }) {
         </p>
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#3b0764]`}>
-          Maman Étoile,<br />{recipientName || 'Maman'}
+          Maman Soleil,<br />{recipientName || 'Maman'}
         </h1>
 
         <div className="py-1">
@@ -71,7 +74,7 @@ export default function CardSunset({ data, fullscreen = false }) {
           className={`${msgSize} leading-loose text-[#3b0764]`}
           style={{ whiteSpace: 'pre-wrap' }}
         >
-          {message || 'Tu es mon étoile,\ncelle qui guide mes pas dans la nuit.\nJe t\'aime infiniment.'}
+          {message || 'Comme le soleil qui se couche,\nton amour illumine\nchaque fin de journée.'}
         </p>
 
         <div className="pt-2">
