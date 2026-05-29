@@ -149,15 +149,18 @@
   100% { transform: translateX(120px) translateY(-40px); opacity: 0; }
 }
 
-/* Shimmer flash animation (CardSoleil) */
-.glint {
+/* Sun spark animation (CardSoleil) */
+.ray {
   position: absolute;
-  animation: glintFlash ease-in-out infinite;
+  border-radius: 50%;
   pointer-events: none;
+  animation: sunSpark ease-in-out infinite;
 }
-@keyframes glintFlash {
-  0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
-  50%       { opacity: 1; transform: scale(1.2) rotate(15deg); }
+@keyframes sunSpark {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  15%  { opacity: 0.8; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateY(-60vh) scale(0.3); opacity: 0; }
 }
 
 /* Snow fall animation (CardHauts) */

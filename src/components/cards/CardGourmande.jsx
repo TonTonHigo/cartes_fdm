@@ -99,13 +99,13 @@ export default function CardGourmande({ data, fullscreen = false }) {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: '1px solid rgba(245,158,11,0.4)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <p className={`${smallText} uppercase tracking-[0.3em] text-[#FEF3D0]`}>
+        <p className={`${smallText} uppercase tracking-[0.3em] text-[#92400e]`}>
           Fête des Mères
         </p>
 
         <div style={{ fontSize: fullscreen ? '2rem' : '1.1rem' }}>🍲</div>
 
-        <h1 className={`${titleSize} italic font-bold leading-tight text-[#FFF8EC]`}
+        <h1 className={`${titleSize} italic font-bold leading-tight text-[#7c2d12]`}
           style={{}}>
           Maman Gourmande,<br />{recipientName || 'Maman'}
         </h1>
@@ -116,17 +116,17 @@ export default function CardGourmande({ data, fullscreen = false }) {
           <div className="h-px flex-1 opacity-50" style={{ background: 'linear-gradient(to left, transparent, #F59E0B)' }} />
         </div>
 
-        <p className={`${msgSize} leading-loose text-[#FFF8EC]`}
+        <p className={`${msgSize} leading-loose text-[#7c2d12]`}
           style={{ whiteSpace: 'pre-wrap', fontFamily: '"Lato", sans-serif' }}>
           {message || 'Avec toi, chaque moment\nest une recette de bonheur\net d\'amour partagé.'}
         </p>
 
         <div className="pt-2 space-y-1">
-          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#FFF8EC' }}>
+          <p className={`${fullscreen ? 'text-2xl' : 'text-base'} font-script`} style={{ color: '#7c2d12' }}>
             {signature || 'Avec tout mon amour'}
           </p>
           {senderName && (
-            <p className={`${smallText} text-[#FEF3D0]`} style={{ fontFamily: '"Lato", sans-serif' }}>— {senderName}</p>
+            <p className={`${smallText} text-[#92400e]`} style={{ fontFamily: '"Lato", sans-serif' }}>— {senderName}</p>
           )}
         </div>
       </div>

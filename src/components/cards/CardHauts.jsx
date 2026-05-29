@@ -59,14 +59,6 @@ export default function CardHauts({ data, fullscreen = false }) {
         </svg>
       </div>
 
-      {/* Mist layers */}
-      {[30, 50, 65].map((topPct, i) => (
-        <div key={i} className="absolute left-0 right-0 pointer-events-none" style={{
-          top: `${topPct}%`,
-          height: fullscreen ? 40 : 20,
-          background: `linear-gradient(to right, transparent 0%, ${safeAccent}26 30%, ${safeAccent}33 50%, ${safeAccent}26 70%, transparent 100%)`,
-        }} />
-      ))}
 
       {/* Stars top */}
       {Array.from({ length: fullscreen ? 15 : 8 }).map((_, i) => (

@@ -320,7 +320,7 @@ function StepTemplates({ templates, selected, onSelect, onConfirm, data }) {
                 }`}
                 style={{ height: '260px', display: 'block', overflow: 'hidden' }}
               >
-                <div style={{ height: '260px', overflow: 'hidden', borderRadius: '14px', position: 'relative' }}>
+                <div style={{ height: '260px', overflow: 'hidden', borderRadius: '14px', position: 'relative' }} className="[&_.z-10]:!opacity-0">
                   <CardRenderer data={{ ...data, template: t.id, message: '', senderName: '' }} fullscreen={false} />
                   <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none rounded-b-2xl"
                     style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))' }} />

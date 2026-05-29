@@ -49,47 +49,8 @@ export default function CardSunset({ data, fullscreen = false }) {
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(10,5,30,0)' }} />
       <div ref={starsRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }} />
 
-      {/* Moon */}
-      <div
-        className="absolute top-8 right-12 rounded-full opacity-90"
-        style={{
-          width: fullscreen ? 70 : 35,
-          height: fullscreen ? 70 : 35,
-          background: `radial-gradient(circle at 35% 35%, ${safeAccentOnDark}cc, ${safeAccentOnDark})`,
-          boxShadow: `0 0 30px ${safeAccentOnDark}99`,
-        }}
-      />
-
-      {/* Sun glow at bottom */}
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full opacity-40"
-        style={{
-          width: fullscreen ? 400 : 200,
-          height: fullscreen ? 200 : 100,
-          background: 'radial-gradient(ellipse, #fbbf24 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Silhouette hills */}
-      <div
-        className="absolute bottom-0 left-0 right-0 opacity-60"
-        style={{ height: fullscreen ? 100 : 50 }}
-      >
-        <svg viewBox="0 0 400 100" preserveAspectRatio="none" className="w-full h-full">
-          <path d="M0,100 Q50,30 100,60 Q150,0 200,50 Q250,10 300,55 Q350,20 400,60 L400,100 Z" fill="#1a1035" />
-        </svg>
-      </div>
-
-      {/* Horizontal line decoration */}
-      <div className="absolute top-1/3 left-0 right-0 h-px opacity-20" style={{ background: 'linear-gradient(to right, transparent, white, transparent)' }} />
 
       <div className="relative z-10 space-y-4 max-w-lg">
-        <div className="flex justify-center gap-2 mb-2">
-          {['✦', '✧', '✦'].map((s, i) => (
-            <span key={i} className={`${smallText} opacity-80`} style={{ color: safeAccentOnDark, textShadow: sh }}>{s}</span>
-          ))}
-        </div>
-
         <p className={`${smallText} uppercase tracking-widest text-[#4a1d96]`}>
           Fête des Mères
         </p>

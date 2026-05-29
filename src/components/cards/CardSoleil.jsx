@@ -10,27 +10,27 @@ export default function CardSoleil({ data, fullscreen = false }) {
   useEffect(() => {
     if (!sparklesRef.current) return
     const container = sparklesRef.current
-    const sparkles = []
-    for (let i = 0; i < 30; i++) {
+    const rays = []
+    for (let i = 0; i < 20; i++) {
       const el = document.createElement('div')
-      el.className = 'glint'
-      const size = Math.random() * 12 + 4
-      const isstar = Math.random() > 0.5
+      el.className = 'ray'
+      const size = Math.random() * 8 + 3
+      const colors = ['#FDE68A', '#FCD34D', '#FBBF24', '#ffffff']
+      const color = colors[Math.floor(Math.random() * colors.length)]
       el.style.cssText = `
-        width:${size}px; height:${isstar ? 2 : size}px;
-        background:${Math.random() > 0.3 ? '#FDE68A' : '#ffffff'};
-        top:${Math.random() * 75}%;
+        width:${size}px; height:${size}px;
+        background:${color};
+        bottom:${Math.random() * 30}%;
         left:${Math.random() * 100}%;
-        animation-duration:${Math.random() * 1.2 + 0.5}s;
-        animation-delay:${Math.random() * 5}s;
-        box-shadow:0 0 ${size * 3}px #FDE68A, 0 0 ${size}px #fff;
-        border-radius:${isstar ? '1px' : '50%'};
-        transform-origin:center;
+        animation-duration:${Math.random() * 3 + 2}s;
+        animation-delay:${Math.random() * 7}s;
+        box-shadow:0 0 ${size * 3}px ${color};
+        filter:blur(0.5px);
       `
       container.appendChild(el)
-      sparkles.push(el)
+      rays.push(el)
     }
-    return () => sparkles.forEach(s => s.remove())
+    return () => rays.forEach(r => r.remove())
   }, [fullscreen])
   const msgSize = fullscreen ? 'text-xl' : 'text-sm'
   const titleSize = fullscreen ? 'text-4xl' : 'text-xl'

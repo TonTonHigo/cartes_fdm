@@ -68,7 +68,7 @@ export default function CardLontan({ data, fullscreen = false }) {
 
         <h1 className={`${titleSize} italic font-bold leading-tight text-[#451a03]`}
           style={{}}>
-          Lontan, aujourd'hui,<br />toujours toi, {recipientName || 'Maman'}
+          Maman Lontan,<br />toujours dans mon cœur
         </h1>
 
         <div className="flex items-center gap-2 justify-center">
