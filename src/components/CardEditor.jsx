@@ -16,21 +16,21 @@ const TEMPLATES = [
     name: 'Maman Soleil',
     desc: 'Coucher de Soleil',
     preview: 'linear-gradient(180deg, #1a1035 0%, #7c3aed 50%, #fbbf24 100%)',
-    emoji: '🏔️',
+    emoji: '☀️',
   },
   {
     id: 'aquarelle',
     name: 'Maman Fruitée',
-    desc: 'Pastels & Douceur',
+    desc: 'Tropical & Douceur',
     preview: 'linear-gradient(135deg, #fce7f3, #ede9fe, #d1fae5)',
-    emoji: '🎨',
+    emoji: '🍉',
   },
   {
     id: 'royal',
     name: 'Maman Sportive',
-    desc: 'Or & Mystère',
+    desc: 'Force & Détermination',
     preview: 'linear-gradient(145deg, #1e0a3c, #2d1557)',
-    emoji: '👑',
+    emoji: '🏅',
   },
   {
     id: 'creole',
@@ -49,9 +49,9 @@ const TEMPLATES = [
   {
     id: 'nature',
     name: 'Maman Bronzette',
-    desc: 'Jungle & Cascade',
+    desc: 'Plage & Soleil',
     preview: 'linear-gradient(160deg, #071E0A, #1A7A3A, #0C5E6E)',
-    emoji: '🌊',
+    emoji: '🏖️',
   },
   {
     id: 'soleil',
@@ -65,7 +65,7 @@ const TEMPLATES = [
     name: 'Maman Étoile',
     desc: 'Ciel Étoilé',
     preview: 'linear-gradient(180deg, #0F1F14, #2D5A35, #B8CCB8)',
-    emoji: '🌿',
+    emoji: '⭐',
   },
   {
     id: 'gourmande',
